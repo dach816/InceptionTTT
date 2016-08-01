@@ -11,19 +11,20 @@
 
     <ImageView
         android:id="@+id/board"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/board_width"
+        android:layout_height="@dimen/board_height"
         android:src="@drawable/tictactoeboard"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/board_width"
+        android:layout_height="@dimen/board_height"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
 
             <ImageButton
                 android:id="@+id/cell1"
@@ -34,7 +35,7 @@
                 android:padding="@dimen/piece_margin"
                 android:scaleType="fitCenter"
                 android:background="@android:color/transparent"
-                android:src="@drawable/tictactoeo"/>
+                android:onClick="placePieceCell1"/>
 
             <ImageButton
                 android:id="@+id/cell2"
@@ -45,7 +46,7 @@
                 android:padding="@dimen/piece_margin"
                 android:scaleType="fitCenter"
                 android:background="@android:color/transparent"
-                android:src="@drawable/tictactoex" />
+                android:onClick="placePieceCell2" />
 
             <ImageButton
                 android:id="@+id/cell3"
@@ -56,13 +57,14 @@
                 android:padding="@dimen/piece_margin"
                 android:scaleType="fitCenter"
                 android:background="@android:color/transparent"
-                android:src="@drawable/tictactoex" />
+                android:onClick="placePieceCell3" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
 
             <ImageButton
                 android:id="@+id/cell4"
@@ -73,7 +75,7 @@
                 android:padding="@dimen/piece_margin"
                 android:scaleType="fitCenter"
                 android:background="@android:color/transparent"
-                android:src="@drawable/tictactoeo" />
+                android:onClick="placePieceCell4" />
 
             <ImageButton
                 android:id="@+id/cell5"
@@ -84,7 +86,7 @@
                 android:padding="@dimen/piece_margin"
                 android:scaleType="fitCenter"
                 android:background="@android:color/transparent"
-                android:src="@drawable/tictactoex" />
+                android:onClick="placePieceCell5" />
 
             <ImageButton
                 android:id="@+id/cell6"
@@ -95,13 +97,14 @@
                 android:padding="@dimen/piece_margin"
                 android:scaleType="fitCenter"
                 android:background="@android:color/transparent"
-                android:src="@drawable/tictactoex" />
+                android:onClick="placePieceCell6" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
 
             <ImageButton
                 android:id="@+id/cell7"
@@ -112,7 +115,7 @@
                 android:padding="@dimen/piece_margin"
                 android:scaleType="fitCenter"
                 android:background="@android:color/transparent"
-                android:src="@drawable/tictactoeo" />
+                android:onClick="placePieceCell7" />
 
             <ImageButton
                 android:id="@+id/cell8"
@@ -123,7 +126,7 @@
                 android:padding="@dimen/piece_margin"
                 android:scaleType="fitCenter"
                 android:background="@android:color/transparent"
-                android:src="@drawable/tictactoex" />
+                android:onClick="placePieceCell8" />
 
             <ImageButton
                 android:id="@+id/cell9"
@@ -134,9 +137,24 @@
                 android:padding="@dimen/piece_margin"
                 android:scaleType="fitCenter"
                 android:background="@android:color/transparent"
-                android:src="@drawable/tictactoex" />
+                android:onClick="placePieceCell9" />
         </LinearLayout>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/restart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/board"
+        android:text="@string/restart"
+        android:onClick="restart"/>
+
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/restart"
+        android:text=""/>
 
 </RelativeLayout>
