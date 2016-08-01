@@ -62,7 +62,7 @@ public class GameActivity extends AppCompatActivity {
     public void placePieceCell2(View view) {
         final ImageButton cell2 = (ImageButton) findViewById(R.id.cell2);
 
-        if (cell1Piece == Piece.NONE.getValue()) {
+        if (cell2Piece == Piece.NONE.getValue()) {
             if (currentPlayerX) {
                 cell2.setImageResource(R.drawable.tictactoex);
                 cell2Piece = Piece.X.getValue();
