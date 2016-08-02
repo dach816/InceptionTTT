@@ -1,0 +1,1245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.hfad.inceptionttt.InceptionGameActivity">
+
+    <!--This is the image view for the big board-->
+    <ImageView
+        android:id="@+id/board"
+        android:layout_width="@dimen/board_width"
+        android:layout_height="@dimen/board_height"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/tictactoeboard"/>
+
+    <!--This is the layout for the 9 smaller boards within the big board-->
+    <LinearLayout
+        android:layout_width="@dimen/board_width"
+        android:layout_height="@dimen/board_height"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/board1"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeboard"/>
+
+            <ImageView
+                android:id="@+id/board2"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeboard"/>
+
+            <ImageView
+                android:id="@+id/board3"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeboard"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/board4"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeboard"/>
+
+            <ImageView
+                android:id="@+id/board5"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeboard"/>
+
+            <ImageView
+                android:id="@+id/board6"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeboard"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/board7"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeboard"/>
+
+            <ImageView
+                android:id="@+id/board8"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeboard"/>
+
+            <ImageView
+                android:id="@+id/board9"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeboard"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--This is the layout for the 9 buttons to select a board-->
+    <LinearLayout
+        android:layout_width="@dimen/board_width"
+        android:layout_height="@dimen/board_height"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/boardButton1"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:onClick="selectBoard1"/>
+
+            <ImageButton
+                android:id="@+id/boardButton2"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:onClick="selectBoard2"/>
+
+            <ImageButton
+                android:id="@+id/boardButton3"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:onClick="selectBoard3"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/boardButton4"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:onClick="selectBoard4"/>
+
+            <ImageButton
+                android:id="@+id/boardButton5"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:onClick="selectBoard5"/>
+
+            <ImageButton
+                android:id="@+id/boardButton6"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:onClick="selectBoard6"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/boardButton7"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:onClick="selectBoard7"/>
+
+            <ImageButton
+                android:id="@+id/boardButton8"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:onClick="selectBoard8"/>
+
+            <ImageButton
+                android:id="@+id/boardButton9"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:onClick="selectBoard9"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--This is the layout for the pieces (X's and O's) for each small cell-->
+    <LinearLayout
+        android:layout_width="@dimen/board_width"
+        android:layout_height="@dimen/board_height"
+        android:orientation="vertical">
+
+        <!-- 1st row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/cell11"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"/>
+
+            <ImageView
+                android:id="@+id/cell12"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/cell13"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/cell21"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"/>
+
+            <ImageView
+                android:id="@+id/cell22"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/cell23"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/cell31"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"/>
+
+            <ImageView
+                android:id="@+id/cell32"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/cell33"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+        </LinearLayout>
+
+        <!-- 2nd row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/cell14"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoex"/>
+
+            <ImageView
+                android:id="@+id/cell15"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/cell16"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/cell24"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"/>
+
+            <ImageView
+                android:id="@+id/cell25"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo" />
+
+            <ImageView
+                android:id="@+id/cell26"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/cell34"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"/>
+
+            <ImageView
+                android:id="@+id/cell35"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/cell36"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoex" />
+        </LinearLayout>
+
+        <!-- 3rd row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/cell17"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo"/>
+
+            <ImageView
+                android:id="@+id/cell18"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo" />
+
+            <ImageView
+                android:id="@+id/cell19"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoex" />
+
+            <ImageView
+                android:id="@+id/cell27"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo"/>
+
+            <ImageView
+                android:id="@+id/cell28"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoex" />
+
+            <ImageView
+                android:id="@+id/cell29"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo" />
+
+            <ImageView
+                android:id="@+id/cell37"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoex"/>
+
+            <ImageView
+                android:id="@+id/cell38"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo" />
+
+            <ImageView
+                android:id="@+id/cell39"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo" />
+        </LinearLayout>
+
+        <!-- 4th row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/cell41"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoex"/>
+
+            <ImageView
+                android:id="@+id/cell42"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/cell43"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/cell51"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo"/>
+
+            <ImageView
+                android:id="@+id/cell52"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/cell53"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoex" />
+
+            <ImageView
+                android:id="@+id/cell61"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"/>
+
+            <ImageView
+                android:id="@+id/cell62"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo" />
+
+            <ImageView
+                android:id="@+id/cell63"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+        </LinearLayout>
+
+        <!-- 5th row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/cell44"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo"/>
+
+            <ImageView
+                android:id="@+id/cell45"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo" />
+
+            <ImageView
+                android:id="@+id/cell46"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoex" />
+
+            <ImageView
+                android:id="@+id/cell54"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo"/>
+
+            <ImageView
+                android:id="@+id/cell55"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoex" />
+
+            <ImageView
+                android:id="@+id/cell56"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo" />
+
+            <ImageView
+                android:id="@+id/cell64"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoex"/>
+
+            <ImageView
+                android:id="@+id/cell65"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo" />
+
+            <ImageView
+                android:id="@+id/cell66"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo" />
+        </LinearLayout>
+
+        <!-- 6th row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/cell47"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"/>
+
+            <ImageView
+                android:id="@+id/cell48"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/cell49"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/cell57"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"/>
+
+            <ImageView
+                android:id="@+id/cell58"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/cell59"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/cell67"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"/>
+
+            <ImageView
+                android:id="@+id/cell68"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/cell69"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+        </LinearLayout>
+
+        <!-- 7th row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/cell71"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo"/>
+
+            <ImageView
+                android:id="@+id/cell72"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo" />
+
+            <ImageView
+                android:id="@+id/cell73"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoex" />
+
+            <ImageView
+                android:id="@+id/cell81"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo"/>
+
+            <ImageView
+                android:id="@+id/cell82"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoex" />
+
+            <ImageView
+                android:id="@+id/cell83"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo" />
+
+            <ImageView
+                android:id="@+id/cell91"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoex"/>
+
+            <ImageView
+                android:id="@+id/cell92"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo" />
+
+            <ImageView
+                android:id="@+id/cell93"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo" />
+        </LinearLayout>
+
+        <!-- 8th row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/cell74"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"/>
+
+            <ImageView
+                android:id="@+id/cell75"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/cell76"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/cell84"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"/>
+
+            <ImageView
+                android:id="@+id/cell85"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/cell86"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/cell94"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"/>
+
+            <ImageView
+                android:id="@+id/cell95"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"/>
+
+            <ImageView
+                android:id="@+id/cell96"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter" />
+        </LinearLayout>
+
+        <!-- 9th row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/cell77"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo"/>
+
+            <ImageView
+                android:id="@+id/cell78"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo" />
+
+            <ImageView
+                android:id="@+id/cell79"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoex" />
+
+            <ImageView
+                android:id="@+id/cell87"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo"/>
+
+            <ImageView
+                android:id="@+id/cell88"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoex" />
+
+            <ImageView
+                android:id="@+id/cell89"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo" />
+
+            <ImageView
+                android:id="@+id/cell97"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoex"/>
+
+            <ImageView
+                android:id="@+id/cell98"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo" />
+
+            <ImageView
+                android:id="@+id/cell99"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tictactoeo" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--This is an image view for the interactive board-->
+    <ImageView
+        android:id="@+id/interactiveBoard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/board"
+        android:layout_marginTop="5dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/tictactoeboardgoldoutlined"/>
+
+    <ImageButton
+        android:id="@+id/cellButton2"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignTop="@+id/interactiveBoard"
+        android:layout_centerHorizontal="true"
+        android:adjustViewBounds="true"
+        android:padding="@dimen/piece_margin"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+        android:onClick="placePieceCell2"/>
+
+    <ImageButton
+        android:id="@+id/cellButton1"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignTop="@+id/interactiveBoard"
+        android:layout_toLeftOf="@+id/cellButton2"
+        android:layout_marginRight="10dp"
+        android:adjustViewBounds="true"
+        android:padding="@dimen/piece_margin"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+        android:onClick="placePieceCell1"/>
+
+    <ImageButton
+        android:id="@+id/cellButton3"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignTop="@+id/interactiveBoard"
+        android:layout_toRightOf="@+id/cellButton2"
+        android:layout_marginLeft="10dp"
+        android:adjustViewBounds="true"
+        android:padding="@dimen/piece_margin"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+        android:onClick="placePieceCell3"/>
+
+    <ImageButton
+        android:id="@+id/cellButton4"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignLeft="@+id/cellButton1"
+        android:layout_below="@+id/cellButton1"
+        android:layout_marginTop="14dp"
+        android:adjustViewBounds="true"
+        android:padding="@dimen/piece_margin"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+        android:onClick="placePieceCell4"/>
+
+    <ImageButton
+        android:id="@+id/cellButton5"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignLeft="@+id/cellButton2"
+        android:layout_below="@+id/cellButton2"
+        android:layout_marginTop="14dp"
+        android:adjustViewBounds="true"
+        android:padding="@dimen/piece_margin"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+        android:onClick="placePieceCell5"/>
+
+    <ImageButton
+        android:id="@+id/cellButton6"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignLeft="@+id/cellButton3"
+        android:layout_below="@+id/cellButton3"
+        android:layout_marginTop="14dp"
+        android:adjustViewBounds="true"
+        android:padding="@dimen/piece_margin"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+        android:onClick="placePieceCell6"/>
+
+    <ImageButton
+        android:id="@+id/cellButton7"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignLeft="@+id/cellButton4"
+        android:layout_below="@+id/cellButton4"
+        android:layout_marginTop="14dp"
+        android:adjustViewBounds="true"
+        android:padding="@dimen/piece_margin"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+        android:onClick="placePieceCell7"/>
+
+    <ImageButton
+        android:id="@+id/cellButton8"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignLeft="@+id/cellButton5"
+        android:layout_below="@+id/cellButton5"
+        android:layout_marginTop="14dp"
+        android:adjustViewBounds="true"
+        android:padding="@dimen/piece_margin"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+        android:onClick="placePieceCell8"/>
+
+    <ImageButton
+        android:id="@+id/cellButton9"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignLeft="@+id/cellButton6"
+        android:layout_below="@+id/cellButton6"
+        android:layout_marginTop="14dp"
+        android:adjustViewBounds="true"
+        android:padding="@dimen/piece_margin"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+        android:onClick="placePieceCell9"/>
+
+</RelativeLayout>

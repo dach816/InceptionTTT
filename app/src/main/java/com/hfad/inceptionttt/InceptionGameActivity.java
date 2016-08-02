@@ -1,0 +1,13 @@
+package com.hfad.inceptionttt;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+public class InceptionGameActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_inception_game);
+    }
+}

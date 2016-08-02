@@ -13,6 +13,7 @@
         android:id="@+id/board"
         android:layout_width="@dimen/board_width"
         android:layout_height="@dimen/board_height"
+        android:layout_centerHorizontal="true"
         android:src="@drawable/tictactoeboard"/>
 
     <LinearLayout
