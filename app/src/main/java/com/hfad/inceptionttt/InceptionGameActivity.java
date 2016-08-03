@@ -13,8 +13,13 @@ import java.util.List;
 import java.util.Map;
 
 public class InceptionGameActivity extends AppCompatActivity {
+    //X always goes first
+    boolean isCurrentPlayerX = true;
+
+    //Represents the currently selected board number, 1-9, and is 0 if no board is selected
     private int selectedBoardNumber;
     private Map<Integer, Integer> boardIdMap = createBoardIdMap();
+    private Map<Integer, List<Integer>> cellPieceIdMap = createCellPieceIdMap();
 
     //Pieces in board1, i.e. cell(board #)(cell #)Piece
     private int cell11Piece;
@@ -176,6 +181,94 @@ public class InceptionGameActivity extends AppCompatActivity {
         selectBoard(boardNumber, boardImageId);
     }
 
+    public void placePieceCell1(View view) {
+        //Only do something if the interactive board is visible
+        if (isInteractiveBoardVisible()) {
+            placePieceByCell(1, (ImageButton) findViewById(R.id.cellButton1));
+        }
+    }
+
+    public void placePieceCell2(View view) {
+        //Only do something if the interactive board is visible
+        if (isInteractiveBoardVisible()) {
+            placePieceByCell(2, (ImageButton) findViewById(R.id.cellButton2));
+        }
+    }
+
+    public void placePieceCell3(View view) {
+        //Only do something if the interactive board is visible
+        if (isInteractiveBoardVisible()) {
+            placePieceByCell(3, (ImageButton) findViewById(R.id.cellButton3));
+        }
+    }
+
+    public void placePieceCell4(View view) {
+        //Only do something if the interactive board is visible
+        if (isInteractiveBoardVisible()) {
+            placePieceByCell(4, (ImageButton) findViewById(R.id.cellButton4));
+        }
+    }
+
+    public void placePieceCell5(View view) {
+        //Only do something if the interactive board is visible
+        if (isInteractiveBoardVisible()) {
+            placePieceByCell(5, (ImageButton) findViewById(R.id.cellButton5));
+        }
+    }
+
+    public void placePieceCell6(View view) {
+        //Only do something if the interactive board is visible
+        if (isInteractiveBoardVisible()) {
+            placePieceByCell(6, (ImageButton) findViewById(R.id.cellButton6));
+        }
+    }
+
+    public void placePieceCell7(View view) {
+        //Only do something if the interactive board is visible
+        if (isInteractiveBoardVisible()) {
+            placePieceByCell(7, (ImageButton) findViewById(R.id.cellButton7));
+        }
+    }
+
+    public void placePieceCell8(View view) {
+        //Only do something if the interactive board is visible
+        if (isInteractiveBoardVisible()) {
+            placePieceByCell(8, (ImageButton) findViewById(R.id.cellButton8));
+        }
+    }
+
+    public void placePieceCell9(View view) {
+        //Only do something if the interactive board is visible
+        if (isInteractiveBoardVisible()) {
+            placePieceByCell(9, (ImageButton) findViewById(R.id.cellButton9));
+        }
+    }
+
+    private void placePieceByCell(int cellNumber, ImageButton button) {
+        List<Integer> cellPieces = createCellPieceMap().get(selectedBoardNumber);
+        int cellPiece = cellPieces.get(cellNumber - 1);
+        List<Integer> cellPieceIds = cellPieceIdMap.get(selectedBoardNumber);
+        int cellPieceId = cellPieceIds.get(cellNumber - 1);
+        ImageView cellImage = (ImageView) findViewById(cellPieceId);
+
+        if (cellPiece == Piece.NONE.getValue() && isCurrentPlayerX) {
+            button.setImageResource(R.drawable.tictactoex);
+            cellImage.setImageResource(R.drawable.tictactoex);
+            cellPiece = Piece.X.getValue();
+            setCellPieceValue(selectedBoardNumber, cellNumber, Piece.X.getValue());
+        }
+        else if (cellPiece == Piece.NONE.getValue() && !isCurrentPlayerX) {
+            button.setImageResource(R.drawable.tictactoeo);
+            cellImage.setImageResource(R.drawable.tictactoeo);
+            cellPiece = Piece.O.getValue();
+            setCellPieceValue(selectedBoardNumber, cellNumber, Piece.O.getValue());
+        }
+
+        //check for board winner
+
+        isCurrentPlayerX = !isCurrentPlayerX;
+    }
+
     private void selectBoard(int boardNumber, int boardImageId) {
         ImageView board = (ImageView) findViewById(boardImageId);
         ImageView interactiveBoard = (ImageView) findViewById(R.id.interactiveBoard);
@@ -247,6 +340,38 @@ public class InceptionGameActivity extends AppCompatActivity {
         return map;
     }
 
+    private Map<Integer, List<Integer>> createCellPieceIdMap() {
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        List<Integer> cellPieces = Arrays.asList(R.id.cell11, R.id.cell12, R.id.cell13, R.id.cell14,
+                R.id.cell15, R.id.cell16, R.id.cell17, R.id.cell18, R.id.cell19);
+        map.put(1, cellPieces);
+        cellPieces = Arrays.asList(R.id.cell21, R.id.cell22, R.id.cell23, R.id.cell24,
+                R.id.cell25, R.id.cell26, R.id.cell27, R.id.cell28, R.id.cell29);
+        map.put(2, cellPieces);
+        cellPieces = Arrays.asList(R.id.cell31, R.id.cell32, R.id.cell33, R.id.cell34,
+                R.id.cell35, R.id.cell36, R.id.cell37, R.id.cell38, R.id.cell39);
+        map.put(3, cellPieces);
+        cellPieces = Arrays.asList(R.id.cell41, R.id.cell42, R.id.cell43, R.id.cell44,
+                R.id.cell45, R.id.cell46, R.id.cell47, R.id.cell48, R.id.cell49);
+        map.put(4, cellPieces);
+        cellPieces = Arrays.asList(R.id.cell51, R.id.cell52, R.id.cell53, R.id.cell54,
+                R.id.cell55, R.id.cell56, R.id.cell57, R.id.cell58, R.id.cell59);
+        map.put(5, cellPieces);
+        cellPieces = Arrays.asList(R.id.cell61, R.id.cell62, R.id.cell63, R.id.cell64,
+                R.id.cell65, R.id.cell66, R.id.cell67, R.id.cell68, R.id.cell69);
+        map.put(6, cellPieces);
+        cellPieces = Arrays.asList(R.id.cell71, R.id.cell72, R.id.cell73, R.id.cell74,
+                R.id.cell75, R.id.cell76, R.id.cell77, R.id.cell78, R.id.cell79);
+        map.put(7, cellPieces);
+        cellPieces = Arrays.asList(R.id.cell81, R.id.cell82, R.id.cell83, R.id.cell84,
+                R.id.cell85, R.id.cell86, R.id.cell87, R.id.cell88, R.id.cell89);
+        map.put(8, cellPieces);
+        cellPieces = Arrays.asList(R.id.cell91, R.id.cell92, R.id.cell93, R.id.cell94,
+                R.id.cell95, R.id.cell96, R.id.cell97, R.id.cell98, R.id.cell99);
+        map.put(9, cellPieces);
+        return map;
+    }
+
     private Map<Integer, List<Integer>> createCellPieceMap() {
         Map<Integer, List<Integer>> map = new HashMap<>();
         List<Integer> cellPieces = Arrays.asList(cell11Piece, cell12Piece, cell13Piece, cell14Piece,
@@ -277,5 +402,141 @@ public class InceptionGameActivity extends AppCompatActivity {
                 cell95Piece, cell96Piece, cell97Piece, cell98Piece, cell99Piece);
         map.put(9, cellPieces);
         return map;
+    }
+
+    private boolean isInteractiveBoardVisible() {
+        return selectedBoardNumber > 0;
+    }
+
+    private void setCellPieceValue(int boardNumber, int cellNumber, int value) {
+        switch (boardNumber) {
+            case 1:
+                switch (cellNumber) {
+                    case 1: cell11Piece = value; break;
+                    case 2: cell12Piece = value; break;
+                    case 3: cell13Piece = value; break;
+                    case 4: cell14Piece = value; break;
+                    case 5: cell15Piece = value; break;
+                    case 6: cell16Piece = value; break;
+                    case 7: cell17Piece = value; break;
+                    case 8: cell18Piece = value; break;
+                    case 9: cell19Piece = value; break;
+                    default: break;
+                }
+                break;
+            case 2:
+                switch (cellNumber) {
+                    case 1: cell21Piece = value; break;
+                    case 2: cell22Piece = value; break;
+                    case 3: cell23Piece = value; break;
+                    case 4: cell24Piece = value; break;
+                    case 5: cell25Piece = value; break;
+                    case 6: cell26Piece = value; break;
+                    case 7: cell27Piece = value; break;
+                    case 8: cell28Piece = value; break;
+                    case 9: cell29Piece = value; break;
+                    default: break;
+                }
+                break;
+            case 3:
+                switch (cellNumber) {
+                    case 1: cell31Piece = value; break;
+                    case 2: cell32Piece = value; break;
+                    case 3: cell33Piece = value; break;
+                    case 4: cell34Piece = value; break;
+                    case 5: cell35Piece = value; break;
+                    case 6: cell36Piece = value; break;
+                    case 7: cell37Piece = value; break;
+                    case 8: cell38Piece = value; break;
+                    case 9: cell39Piece = value; break;
+                    default: break;
+                }
+                break;
+            case 4:
+                switch (cellNumber) {
+                    case 1: cell41Piece = value; break;
+                    case 2: cell42Piece = value; break;
+                    case 3: cell43Piece = value; break;
+                    case 4: cell44Piece = value; break;
+                    case 5: cell45Piece = value; break;
+                    case 6: cell46Piece = value; break;
+                    case 7: cell47Piece = value; break;
+                    case 8: cell48Piece = value; break;
+                    case 9: cell49Piece = value; break;
+                    default: break;
+                }
+                break;
+            case 5:
+                switch (cellNumber) {
+                    case 1: cell51Piece = value; break;
+                    case 2: cell52Piece = value; break;
+                    case 3: cell53Piece = value; break;
+                    case 4: cell54Piece = value; break;
+                    case 5: cell55Piece = value; break;
+                    case 6: cell56Piece = value; break;
+                    case 7: cell57Piece = value; break;
+                    case 8: cell58Piece = value; break;
+                    case 9: cell59Piece = value; break;
+                    default: break;
+                }
+                break;
+            case 6:
+                switch (cellNumber) {
+                    case 1: cell61Piece = value; break;
+                    case 2: cell62Piece = value; break;
+                    case 3: cell63Piece = value; break;
+                    case 4: cell64Piece = value; break;
+                    case 5: cell65Piece = value; break;
+                    case 6: cell66Piece = value; break;
+                    case 7: cell67Piece = value; break;
+                    case 8: cell68Piece = value; break;
+                    case 9: cell69Piece = value; break;
+                    default: break;
+                }
+                break;
+            case 7:
+                switch (cellNumber) {
+                    case 1: cell71Piece = value; break;
+                    case 2: cell72Piece = value; break;
+                    case 3: cell73Piece = value; break;
+                    case 4: cell74Piece = value; break;
+                    case 5: cell75Piece = value; break;
+                    case 6: cell76Piece = value; break;
+                    case 7: cell77Piece = value; break;
+                    case 8: cell78Piece = value; break;
+                    case 9: cell79Piece = value; break;
+                    default: break;
+                }
+                break;
+            case 8:
+                switch (cellNumber) {
+                    case 1: cell81Piece = value; break;
+                    case 2: cell82Piece = value; break;
+                    case 3: cell83Piece = value; break;
+                    case 4: cell84Piece = value; break;
+                    case 5: cell85Piece = value; break;
+                    case 6: cell86Piece = value; break;
+                    case 7: cell87Piece = value; break;
+                    case 8: cell88Piece = value; break;
+                    case 9: cell89Piece = value; break;
+                    default: break;
+                }
+                break;
+            case 9:
+                switch (cellNumber) {
+                    case 1: cell91Piece = value; break;
+                    case 2: cell92Piece = value; break;
+                    case 3: cell93Piece = value; break;
+                    case 4: cell94Piece = value; break;
+                    case 5: cell95Piece = value; break;
+                    case 6: cell96Piece = value; break;
+                    case 7: cell97Piece = value; break;
+                    case 8: cell98Piece = value; break;
+                    case 9: cell99Piece = value; break;
+                    default: break;
+                }
+                break;
+            default: break;
+        }
     }
 }
