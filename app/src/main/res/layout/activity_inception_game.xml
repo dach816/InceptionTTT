@@ -373,8 +373,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoex"/>
+                android:scaleType="fitCenter"/>
 
             <ImageView
                 android:id="@+id/cell15"
@@ -410,8 +409,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo" />
+                android:scaleType="fitCenter" />
 
             <ImageView
                 android:id="@+id/cell26"
@@ -447,8 +445,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoex" />
+                android:scaleType="fitCenter" />
         </LinearLayout>
 
         <!-- 3rd row -->
@@ -465,8 +462,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo"/>
+                android:scaleType="fitCenter"/>
 
             <ImageView
                 android:id="@+id/cell18"
@@ -475,8 +471,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo" />
+                android:scaleType="fitCenter" />
 
             <ImageView
                 android:id="@+id/cell19"
@@ -485,8 +480,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoex" />
+                android:scaleType="fitCenter" />
 
             <ImageView
                 android:id="@+id/cell27"
@@ -495,8 +489,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo"/>
+                android:scaleType="fitCenter"/>
 
             <ImageView
                 android:id="@+id/cell28"
@@ -505,8 +498,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoex" />
+                android:scaleType="fitCenter" />
 
             <ImageView
                 android:id="@+id/cell29"
@@ -515,8 +507,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo" />
+                android:scaleType="fitCenter" />
 
             <ImageView
                 android:id="@+id/cell37"
@@ -525,8 +516,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoex"/>
+                android:scaleType="fitCenter"/>
 
             <ImageView
                 android:id="@+id/cell38"
@@ -535,8 +525,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo" />
+                android:scaleType="fitCenter"/>
 
             <ImageView
                 android:id="@+id/cell39"
@@ -545,8 +534,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo" />
+                android:scaleType="fitCenter" />
         </LinearLayout>
 
         <!-- 4th row -->
@@ -563,8 +551,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoex"/>
+                android:scaleType="fitCenter"/>
 
             <ImageView
                 android:id="@+id/cell42"
@@ -591,8 +578,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo"/>
+                android:scaleType="fitCenter"/>
 
             <ImageView
                 android:id="@+id/cell52"
@@ -610,8 +596,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoex" />
+                android:scaleType="fitCenter" />
 
             <ImageView
                 android:id="@+id/cell61"
@@ -629,8 +614,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo" />
+                android:scaleType="fitCenter" />
 
             <ImageView
                 android:id="@+id/cell63"
@@ -656,8 +640,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo"/>
+                android:scaleType="fitCenter"/>
 
             <ImageView
                 android:id="@+id/cell45"
@@ -666,8 +649,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo" />
+                android:scaleType="fitCenter" />
 
             <ImageView
                 android:id="@+id/cell46"
@@ -676,8 +658,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoex" />
+                android:scaleType="fitCenter" />
 
             <ImageView
                 android:id="@+id/cell54"
@@ -686,8 +667,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo"/>
+                android:scaleType="fitCenter"/>
 
             <ImageView
                 android:id="@+id/cell55"
@@ -696,8 +676,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoex" />
+                android:scaleType="fitCenter" />
 
             <ImageView
                 android:id="@+id/cell56"
@@ -706,8 +685,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo" />
+                android:scaleType="fitCenter" />
 
             <ImageView
                 android:id="@+id/cell64"
@@ -716,8 +694,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoex"/>
+                android:scaleType="fitCenter"/>
 
             <ImageView
                 android:id="@+id/cell65"
@@ -726,8 +703,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo" />
+                android:scaleType="fitCenter" />
 
             <ImageView
                 android:id="@+id/cell66"
@@ -736,8 +712,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo" />
+                android:scaleType="fitCenter" />
         </LinearLayout>
 
         <!-- 6th row -->
@@ -843,8 +818,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo"/>
+                android:scaleType="fitCenter"/>
 
             <ImageView
                 android:id="@+id/cell72"
@@ -853,8 +827,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo" />
+                android:scaleType="fitCenter" />
 
             <ImageView
                 android:id="@+id/cell73"
@@ -863,8 +836,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoex" />
+                android:scaleType="fitCenter" />
 
             <ImageView
                 android:id="@+id/cell81"
@@ -873,8 +845,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo"/>
+                android:scaleType="fitCenter"/>
 
             <ImageView
                 android:id="@+id/cell82"
@@ -883,8 +854,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoex" />
+                android:scaleType="fitCenter" />
 
             <ImageView
                 android:id="@+id/cell83"
@@ -893,8 +863,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo" />
+                android:scaleType="fitCenter" />
 
             <ImageView
                 android:id="@+id/cell91"
@@ -903,8 +872,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoex"/>
+                android:scaleType="fitCenter"/>
 
             <ImageView
                 android:id="@+id/cell92"
@@ -913,8 +881,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo" />
+                android:scaleType="fitCenter" />
 
             <ImageView
                 android:id="@+id/cell93"
@@ -923,8 +890,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo" />
+                android:scaleType="fitCenter" />
         </LinearLayout>
 
         <!-- 8th row -->
@@ -1030,8 +996,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo"/>
+                android:scaleType="fitCenter"/>
 
             <ImageView
                 android:id="@+id/cell78"
@@ -1040,8 +1005,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo" />
+                android:scaleType="fitCenter" />
 
             <ImageView
                 android:id="@+id/cell79"
@@ -1050,8 +1014,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoex" />
+                android:scaleType="fitCenter" />
 
             <ImageView
                 android:id="@+id/cell87"
@@ -1060,8 +1023,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo"/>
+                android:scaleType="fitCenter"/>
 
             <ImageView
                 android:id="@+id/cell88"
@@ -1070,8 +1032,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoex" />
+                android:scaleType="fitCenter" />
 
             <ImageView
                 android:id="@+id/cell89"
@@ -1080,8 +1041,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo" />
+                android:scaleType="fitCenter" />
 
             <ImageView
                 android:id="@+id/cell97"
@@ -1090,8 +1050,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoex"/>
+                android:scaleType="fitCenter"/>
 
             <ImageView
                 android:id="@+id/cell98"
@@ -1100,8 +1059,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo" />
+                android:scaleType="fitCenter" />
 
             <ImageView
                 android:id="@+id/cell99"
@@ -1110,8 +1068,7 @@
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:src="@drawable/tictactoeo" />
+                android:scaleType="fitCenter" />
         </LinearLayout>
 
     </LinearLayout>
