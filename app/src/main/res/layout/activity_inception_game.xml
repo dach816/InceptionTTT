@@ -1123,13 +1123,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/board"
         android:layout_marginTop="5dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/tictactoeboardgoldoutlined"/>
+        android:layout_centerHorizontal="true"/>
 
+    <!--These image buttons represent the 9 cells of the interactive board-->
     <ImageButton
         android:id="@+id/cellButton2"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignTop="@+id/interactiveBoard"
         android:layout_centerHorizontal="true"
         android:adjustViewBounds="true"
@@ -1140,11 +1140,10 @@
 
     <ImageButton
         android:id="@+id/cellButton1"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignTop="@+id/interactiveBoard"
         android:layout_toLeftOf="@+id/cellButton2"
-        android:layout_marginRight="10dp"
         android:adjustViewBounds="true"
         android:padding="@dimen/piece_margin"
         android:scaleType="fitCenter"
@@ -1153,11 +1152,11 @@
 
     <ImageButton
         android:id="@+id/cellButton3"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignTop="@+id/interactiveBoard"
         android:layout_toRightOf="@+id/cellButton2"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="3dp"
         android:adjustViewBounds="true"
         android:padding="@dimen/piece_margin"
         android:scaleType="fitCenter"
@@ -1166,11 +1165,10 @@
 
     <ImageButton
         android:id="@+id/cellButton4"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignLeft="@+id/cellButton1"
         android:layout_below="@+id/cellButton1"
-        android:layout_marginTop="14dp"
         android:adjustViewBounds="true"
         android:padding="@dimen/piece_margin"
         android:scaleType="fitCenter"
@@ -1179,11 +1177,10 @@
 
     <ImageButton
         android:id="@+id/cellButton5"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignLeft="@+id/cellButton2"
         android:layout_below="@+id/cellButton2"
-        android:layout_marginTop="14dp"
         android:adjustViewBounds="true"
         android:padding="@dimen/piece_margin"
         android:scaleType="fitCenter"
@@ -1192,11 +1189,10 @@
 
     <ImageButton
         android:id="@+id/cellButton6"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignLeft="@+id/cellButton3"
         android:layout_below="@+id/cellButton3"
-        android:layout_marginTop="14dp"
         android:adjustViewBounds="true"
         android:padding="@dimen/piece_margin"
         android:scaleType="fitCenter"
@@ -1205,11 +1201,10 @@
 
     <ImageButton
         android:id="@+id/cellButton7"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignLeft="@+id/cellButton4"
         android:layout_below="@+id/cellButton4"
-        android:layout_marginTop="14dp"
         android:adjustViewBounds="true"
         android:padding="@dimen/piece_margin"
         android:scaleType="fitCenter"
@@ -1218,11 +1213,10 @@
 
     <ImageButton
         android:id="@+id/cellButton8"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignLeft="@+id/cellButton5"
         android:layout_below="@+id/cellButton5"
-        android:layout_marginTop="14dp"
         android:adjustViewBounds="true"
         android:padding="@dimen/piece_margin"
         android:scaleType="fitCenter"
@@ -1231,11 +1225,10 @@
 
     <ImageButton
         android:id="@+id/cellButton9"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignLeft="@+id/cellButton6"
         android:layout_below="@+id/cellButton6"
-        android:layout_marginTop="14dp"
         android:adjustViewBounds="true"
         android:padding="@dimen/piece_margin"
         android:scaleType="fitCenter"
