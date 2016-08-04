@@ -1,12 +1,13 @@
 package com.hfad.inceptionttt;
 
 /**
- * Enum for the different piece options: none, O, and X
+ * Enum for the different piece options: none, O, X, unselectable
  */
 public enum Piece {
     NONE(0),
     O(1),
-    X(2);
+    X(2),
+    UNSELECTABLE(-1);
 
     private int value;
 

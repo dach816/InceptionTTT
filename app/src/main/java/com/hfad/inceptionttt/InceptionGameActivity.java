@@ -1,8 +1,7 @@
 package com.hfad.inceptionttt;
 
-import android.media.Image;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -18,8 +17,12 @@ public class InceptionGameActivity extends AppCompatActivity {
 
     //Represents the currently selected board number, 1-9, and is 0 if no board is selected
     private int selectedBoardNumber;
+    //Map where key is the board number and value is the ID of the image view
     private Map<Integer, Integer> boardIdMap = createBoardIdMap();
+    //Map where key is the board number and value is a list of the IDs for each piece's image view
     private Map<Integer, List<Integer>> cellPieceIdMap = createCellPieceIdMap();
+    //Map where key is the board number and value is whether the board is unselectable
+    private Map<Integer, Boolean> unselectableBoardMap = createUnselectableBoardMap();
 
     //Pieces in board1, i.e. cell(board #)(cell #)Piece
     private int cell11Piece;
@@ -251,65 +254,148 @@ public class InceptionGameActivity extends AppCompatActivity {
         int cellPieceId = cellPieceIds.get(cellNumber - 1);
         ImageView cellImage = (ImageView) findViewById(cellPieceId);
 
-        if (cellPiece == Piece.NONE.getValue() && isCurrentPlayerX) {
-            button.setImageResource(R.drawable.tictactoex);
-            cellImage.setImageResource(R.drawable.tictactoex);
-            cellPiece = Piece.X.getValue();
-            setCellPieceValue(selectedBoardNumber, cellNumber, Piece.X.getValue());
-        }
-        else if (cellPiece == Piece.NONE.getValue() && !isCurrentPlayerX) {
-            button.setImageResource(R.drawable.tictactoeo);
-            cellImage.setImageResource(R.drawable.tictactoeo);
-            cellPiece = Piece.O.getValue();
-            setCellPieceValue(selectedBoardNumber, cellNumber, Piece.O.getValue());
-        }
+        if (cellPiece == Piece.NONE.getValue()) {
+            if (isCurrentPlayerX) {
+                button.setImageResource(R.drawable.tictactoex);
+                cellImage.setImageResource(R.drawable.tictactoex);
+                cellPieces.set(cellNumber - 1, Piece.X.getValue());
+                setCellPieceValue(selectedBoardNumber, cellNumber, Piece.X.getValue());
+            } else {
+                button.setImageResource(R.drawable.tictactoeo);
+                cellImage.setImageResource(R.drawable.tictactoeo);
+                cellPieces.set(cellNumber - 1, Piece.O.getValue());
+                setCellPieceValue(selectedBoardNumber, cellNumber, Piece.O.getValue());
+            }
 
-        //check for board winner
+            int cell1Piece = cellPieces.get(0);
+            int cell2Piece = cellPieces.get(1);
+            int cell3Piece = cellPieces.get(2);
+            int cell4Piece = cellPieces.get(3);
+            int cell5Piece = cellPieces.get(4);
+            int cell6Piece = cellPieces.get(5);
+            int cell7Piece = cellPieces.get(6);
+            int cell8Piece = cellPieces.get(7);
+            int cell9Piece = cellPieces.get(8);
 
-        isCurrentPlayerX = !isCurrentPlayerX;
+            //check for board winner/tie
+            if (cellNumber == 1) {
+                if ((cell1Piece == cell2Piece && cell1Piece == cell3Piece) ||
+                        (cell1Piece == cell4Piece && cell1Piece == cell7Piece) ||
+                        (cell1Piece == cell5Piece && cell1Piece == cell9Piece)) {
+                    playerWinsTheBoard(cell1Piece);
+                } else if (isThereATie(cellPieces)) {
+                    playerTiesTheBoard();
+                }
+            } else if (cellNumber == 2) {
+                if ((cell2Piece == cell1Piece && cell2Piece == cell3Piece) ||
+                        (cell2Piece == cell5Piece && cell2Piece == cell8Piece)) {
+                    playerWinsTheBoard(cell2Piece);
+                } else if (isThereATie(cellPieces)) {
+                    playerTiesTheBoard();
+                }
+            } else if (cellNumber == 3) {
+                if ((cell3Piece == cell1Piece && cell3Piece == cell2Piece) ||
+                        (cell3Piece == cell6Piece && cell3Piece == cell9Piece) ||
+                        (cell3Piece == cell5Piece && cell3Piece == cell7Piece)) {
+                    playerWinsTheBoard(cell2Piece);
+                } else if (isThereATie(cellPieces)) {
+                    playerTiesTheBoard();
+                }
+            } else if (cellNumber == 4) {
+                if ((cell4Piece == cell1Piece && cell4Piece == cell7Piece) ||
+                        (cell4Piece == cell5Piece && cell4Piece == cell6Piece)) {
+                    playerWinsTheBoard(cell4Piece);
+                } else if (isThereATie(cellPieces)) {
+                    playerTiesTheBoard();
+                }
+            } else if (cellNumber == 5) {
+                if ((cell5Piece == cell2Piece && cell5Piece == cell8Piece) ||
+                        (cell5Piece == cell4Piece && cell5Piece == cell6Piece) ||
+                        (cell5Piece == cell1Piece && cell5Piece == cell9Piece) ||
+                        (cell5Piece == cell3Piece && cell5Piece == cell7Piece)) {
+                    playerWinsTheBoard(cell5Piece);
+                } else if (isThereATie(cellPieces)) {
+                    playerTiesTheBoard();
+                }
+            } else if (cellNumber == 6) {
+                if ((cell6Piece == cell3Piece && cell6Piece == cell9Piece) ||
+                        (cell6Piece == cell4Piece && cell6Piece == cell5Piece)) {
+                    playerWinsTheBoard(cell6Piece);
+                } else if (isThereATie(cellPieces)) {
+                    playerTiesTheBoard();
+                }
+            } else if (cellNumber == 7) {
+                if ((cell7Piece == cell1Piece && cell7Piece == cell4Piece) ||
+                        (cell7Piece == cell8Piece && cell7Piece == cell9Piece) ||
+                        (cell7Piece == cell5Piece && cell7Piece == cell3Piece)) {
+                    playerWinsTheBoard(cell7Piece);
+                } else if (isThereATie(cellPieces)) {
+                    playerTiesTheBoard();
+                }
+            } else if (cellNumber == 8) {
+                if ((cell8Piece == cell2Piece && cell8Piece == cell5Piece) ||
+                        (cell8Piece == cell7Piece && cell8Piece == cell9Piece)) {
+                    playerWinsTheBoard(cell8Piece);
+                } else if (isThereATie(cellPieces)) {
+                    playerTiesTheBoard();
+                }
+            } else if (cellNumber == 9) {
+                if ((cell9Piece == cell7Piece && cell9Piece == cell8Piece) ||
+                        (cell9Piece == cell3Piece && cell9Piece == cell6Piece) ||
+                        (cell9Piece == cell5Piece && cell9Piece == cell1Piece)) {
+                    playerWinsTheBoard(cell9Piece);
+                } else if (isThereATie(cellPieces)) {
+                    playerTiesTheBoard();
+                }
+            }
+
+            isCurrentPlayerX = !isCurrentPlayerX;
+        }
     }
 
     private void selectBoard(int boardNumber, int boardImageId) {
-        ImageView board = (ImageView) findViewById(boardImageId);
-        ImageView interactiveBoard = (ImageView) findViewById(R.id.interactiveBoard);
+        if (!unselectableBoardMap.get(boardNumber)) {
+            ImageView board = (ImageView) findViewById(boardImageId);
+            ImageView interactiveBoard = (ImageView) findViewById(R.id.interactiveBoard);
 
-        //Unselect the previously selected board
-        int prevSelectedBoardNumber = selectedBoardNumber;
-        selectedBoardNumber = boardNumber;
-        if (prevSelectedBoardNumber > 0 && prevSelectedBoardNumber != boardNumber) {
-            ImageView prevSelectedBoard = (ImageView) findViewById(boardIdMap.get(prevSelectedBoardNumber));
-            prevSelectedBoard.setImageResource(R.drawable.tictactoeboard);
-        }
-        //Create the interactive board at the bottom if not previously there
-        else if (prevSelectedBoardNumber == 0) {
-            interactiveBoard.setImageResource(R.drawable.tictactoeboardgoldoutlined);
-        }
+            //Unselect the previously selected board
+            int prevSelectedBoardNumber = selectedBoardNumber;
+            selectedBoardNumber = boardNumber;
+            if (prevSelectedBoardNumber > 0 && prevSelectedBoardNumber != boardNumber) {
+                ImageView prevSelectedBoard = (ImageView) findViewById(boardIdMap.get(prevSelectedBoardNumber));
+                prevSelectedBoard.setImageResource(R.drawable.tictactoeboard);
+            }
+            //Create the interactive board at the bottom if not previously there
+            else if (prevSelectedBoardNumber == 0) {
+                interactiveBoard.setImageResource(R.drawable.tictactoeboardgoldoutlined);
+            }
 
-        //Select the new board
-        board.setImageResource(R.drawable.tictactoeboardgold);
+            //Select the new board
+            board.setImageResource(R.drawable.tictactoeboardgold);
 
-        ImageButton cellButton1 = (ImageButton) findViewById(R.id.cellButton1);
-        ImageButton cellButton2 = (ImageButton) findViewById(R.id.cellButton2);
-        ImageButton cellButton3 = (ImageButton) findViewById(R.id.cellButton3);
-        ImageButton cellButton4 = (ImageButton) findViewById(R.id.cellButton4);
-        ImageButton cellButton5 = (ImageButton) findViewById(R.id.cellButton5);
-        ImageButton cellButton6 = (ImageButton) findViewById(R.id.cellButton6);
-        ImageButton cellButton7 = (ImageButton) findViewById(R.id.cellButton7);
-        ImageButton cellButton8 = (ImageButton) findViewById(R.id.cellButton8);
-        ImageButton cellButton9 = (ImageButton) findViewById(R.id.cellButton9);
+            ImageButton cellButton1 = (ImageButton) findViewById(R.id.cellButton1);
+            ImageButton cellButton2 = (ImageButton) findViewById(R.id.cellButton2);
+            ImageButton cellButton3 = (ImageButton) findViewById(R.id.cellButton3);
+            ImageButton cellButton4 = (ImageButton) findViewById(R.id.cellButton4);
+            ImageButton cellButton5 = (ImageButton) findViewById(R.id.cellButton5);
+            ImageButton cellButton6 = (ImageButton) findViewById(R.id.cellButton6);
+            ImageButton cellButton7 = (ImageButton) findViewById(R.id.cellButton7);
+            ImageButton cellButton8 = (ImageButton) findViewById(R.id.cellButton8);
+            ImageButton cellButton9 = (ImageButton) findViewById(R.id.cellButton9);
 
-        //Set the buttons to show the correct pieces
-        if (prevSelectedBoardNumber != boardNumber) {
-            List<Integer> cellPieces = createCellPieceMap().get(boardNumber);
-            setButtonPiece(cellButton1, cellPieces.get(0));
-            setButtonPiece(cellButton2, cellPieces.get(1));
-            setButtonPiece(cellButton3, cellPieces.get(2));
-            setButtonPiece(cellButton4, cellPieces.get(3));
-            setButtonPiece(cellButton5, cellPieces.get(4));
-            setButtonPiece(cellButton6, cellPieces.get(5));
-            setButtonPiece(cellButton7, cellPieces.get(6));
-            setButtonPiece(cellButton8, cellPieces.get(7));
-            setButtonPiece(cellButton9, cellPieces.get(8));
+            //Set the buttons to show the correct pieces
+            if (prevSelectedBoardNumber != boardNumber) {
+                List<Integer> cellPieces = createCellPieceMap().get(boardNumber);
+                setButtonPiece(cellButton1, cellPieces.get(0));
+                setButtonPiece(cellButton2, cellPieces.get(1));
+                setButtonPiece(cellButton3, cellPieces.get(2));
+                setButtonPiece(cellButton4, cellPieces.get(3));
+                setButtonPiece(cellButton5, cellPieces.get(4));
+                setButtonPiece(cellButton6, cellPieces.get(5));
+                setButtonPiece(cellButton7, cellPieces.get(6));
+                setButtonPiece(cellButton8, cellPieces.get(7));
+                setButtonPiece(cellButton9, cellPieces.get(8));
+            }
         }
     }
 
@@ -326,7 +412,7 @@ public class InceptionGameActivity extends AppCompatActivity {
     }
 
     private Map<Integer, Integer> createBoardIdMap() {
-        Map<Integer, Integer> map = new HashMap<>();
+        Map<Integer, Integer> map = new HashMap<>(9);
         map.put(1, R.id.board1);
         map.put(2, R.id.board2);
         map.put(3, R.id.board3);
@@ -341,7 +427,7 @@ public class InceptionGameActivity extends AppCompatActivity {
     }
 
     private Map<Integer, List<Integer>> createCellPieceIdMap() {
-        Map<Integer, List<Integer>> map = new HashMap<>();
+        Map<Integer, List<Integer>> map = new HashMap<>(9);
         List<Integer> cellPieces = Arrays.asList(R.id.cell11, R.id.cell12, R.id.cell13, R.id.cell14,
                 R.id.cell15, R.id.cell16, R.id.cell17, R.id.cell18, R.id.cell19);
         map.put(1, cellPieces);
@@ -373,7 +459,7 @@ public class InceptionGameActivity extends AppCompatActivity {
     }
 
     private Map<Integer, List<Integer>> createCellPieceMap() {
-        Map<Integer, List<Integer>> map = new HashMap<>();
+        Map<Integer, List<Integer>> map = new HashMap<>(9);
         List<Integer> cellPieces = Arrays.asList(cell11Piece, cell12Piece, cell13Piece, cell14Piece,
                 cell15Piece, cell16Piece, cell17Piece, cell18Piece, cell19Piece);
         map.put(1, cellPieces);
@@ -404,8 +490,41 @@ public class InceptionGameActivity extends AppCompatActivity {
         return map;
     }
 
+    private Map<Integer, Boolean> createUnselectableBoardMap() {
+        Map<Integer, Boolean> map = new HashMap<>(9);
+        map.put(1, false);
+        map.put(2, false);
+        map.put(3, false);
+        map.put(4, false);
+        map.put(5, false);
+        map.put(6, false);
+        map.put(7, false);
+        map.put(8, false);
+        map.put(9, false);
+
+        return map;
+    }
+
     private boolean isInteractiveBoardVisible() {
         return selectedBoardNumber > 0;
+    }
+
+    private boolean isThereATie(List<Integer> cellPieces) {
+        int cell1Piece = cellPieces.get(0);
+        int cell2Piece = cellPieces.get(1);
+        int cell3Piece = cellPieces.get(2);
+        int cell4Piece = cellPieces.get(3);
+        int cell5Piece = cellPieces.get(4);
+        int cell6Piece = cellPieces.get(5);
+        int cell7Piece = cellPieces.get(6);
+        int cell8Piece = cellPieces.get(7);
+        int cell9Piece = cellPieces.get(8);
+
+        return cell1Piece != Piece.NONE.getValue() && cell2Piece != Piece.NONE.getValue() &&
+                cell3Piece != Piece.NONE.getValue() && cell4Piece != Piece.NONE.getValue() &&
+                cell5Piece != Piece.NONE.getValue() && cell6Piece != Piece.NONE.getValue() &&
+                cell7Piece != Piece.NONE.getValue() && cell8Piece != Piece.NONE.getValue() &&
+                cell9Piece != Piece.NONE.getValue();
     }
 
     private void setCellPieceValue(int boardNumber, int cellNumber, int value) {
@@ -538,5 +657,40 @@ public class InceptionGameActivity extends AppCompatActivity {
                 break;
             default: break;
         }
+    }
+
+    private void setCellPieceValuesUnselectableByBoard(int boardNumber) {
+        setCellPieceValue(boardNumber, 1, Piece.UNSELECTABLE.getValue());
+        setCellPieceValue(boardNumber, 2, Piece.UNSELECTABLE.getValue());
+        setCellPieceValue(boardNumber, 3, Piece.UNSELECTABLE.getValue());
+        setCellPieceValue(boardNumber, 4, Piece.UNSELECTABLE.getValue());
+        setCellPieceValue(boardNumber, 5, Piece.UNSELECTABLE.getValue());
+        setCellPieceValue(boardNumber, 6, Piece.UNSELECTABLE.getValue());
+        setCellPieceValue(boardNumber, 7, Piece.UNSELECTABLE.getValue());
+        setCellPieceValue(boardNumber, 8, Piece.UNSELECTABLE.getValue());
+        setCellPieceValue(boardNumber, 9, Piece.UNSELECTABLE.getValue());
+    }
+
+    private void playerWinsTheBoard(int cell1Piece) {
+        if (cell1Piece == Piece.X.getValue()) {
+            //X wins the board
+            setCellPieceValuesUnselectableByBoard(selectedBoardNumber);
+        }
+        else if (cell1Piece == Piece.O.getValue()) {
+            //O wins the board
+            setCellPieceValuesUnselectableByBoard(selectedBoardNumber);
+        }
+
+        //Make board unselectable
+        unselectableBoardMap.put(selectedBoardNumber, true);
+
+        //Check if game is won
+    }
+
+    private void playerTiesTheBoard() {
+        setCellPieceValuesUnselectableByBoard(selectedBoardNumber);
+
+        //Make board unselectable
+        unselectableBoardMap.put(selectedBoardNumber, true);
     }
 }
