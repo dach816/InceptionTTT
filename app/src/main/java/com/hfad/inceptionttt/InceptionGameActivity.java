@@ -798,30 +798,38 @@ public class InceptionGameActivity extends AppCompatActivity {
                     (board1Piece == board4Piece && board1Piece == board7Piece) ||
                     (board1Piece == board5Piece && board1Piece == board9Piece)) {
                 //player wins the game
+                setAllBoardsUnselectable();
             } else if (isThereAGlobalTie()) {
                 //player ties the game
+                setAllBoardsUnselectable();
             }
         } else if (selectedBoardNumber == 2) {
             if ((board2Piece == board1Piece && board2Piece == board3Piece) ||
                     (board2Piece == board5Piece && board2Piece == board8Piece)) {
                 //player wins the game
+                setAllBoardsUnselectable();
             } else if (isThereAGlobalTie()) {
                 //player ties the game
+                setAllBoardsUnselectable();
             }
         } else if (selectedBoardNumber == 3) {
             if ((board3Piece == board1Piece && board3Piece == board2Piece) ||
                     (board3Piece == board6Piece && board3Piece == board9Piece) ||
                     (board3Piece == board5Piece && board3Piece == board7Piece)) {
                 //player wins the game
+                setAllBoardsUnselectable();
             } else if (isThereAGlobalTie()) {
                 //player ties the game
+                setAllBoardsUnselectable();
             }
         } else if (selectedBoardNumber == 4) {
             if ((board4Piece == board1Piece && board4Piece == board7Piece) ||
                     (board4Piece == board5Piece && board4Piece == board6Piece)) {
                 //player wins the game
+                setAllBoardsUnselectable();
             } else if (isThereAGlobalTie()) {
                 //player ties the game
+                setAllBoardsUnselectable();
             }
         } else if (selectedBoardNumber == 5) {
             if ((board5Piece == board2Piece && board5Piece == board8Piece) ||
@@ -829,39 +837,61 @@ public class InceptionGameActivity extends AppCompatActivity {
                     (board5Piece == board1Piece && board5Piece == board9Piece) ||
                     (board5Piece == board3Piece && board5Piece == board7Piece)) {
                 //player wins the game
+                setAllBoardsUnselectable();
             } else if (isThereAGlobalTie()) {
                 //player ties the game
+                setAllBoardsUnselectable();
             }
         } else if (selectedBoardNumber == 6) {
             if ((board6Piece == board3Piece && board6Piece == board9Piece) ||
                     (board6Piece == board4Piece && board6Piece == board5Piece)) {
                 //player wins the game
+                setAllBoardsUnselectable();
             } else if (isThereAGlobalTie()) {
                 //player ties the game
+                setAllBoardsUnselectable();
             }
         } else if (selectedBoardNumber == 7) {
             if ((board7Piece == board1Piece && board7Piece == board4Piece) ||
                     (board7Piece == board8Piece && board7Piece == board9Piece) ||
                     (board7Piece == board5Piece && board7Piece == board3Piece)) {
                 //player wins the game
+                setAllBoardsUnselectable();
             } else if (isThereAGlobalTie()) {
                 //player ties the game
+                setAllBoardsUnselectable();
             }
         } else if (selectedBoardNumber == 8) {
             if ((board8Piece == board2Piece && board8Piece == board5Piece) ||
                     (board8Piece == board7Piece && board8Piece == board9Piece)) {
                 //player wins the game
+                setAllBoardsUnselectable();
             } else if (isThereAGlobalTie()) {
                 //player ties the game
+                setAllBoardsUnselectable();
             }
         } else if (selectedBoardNumber == 9) {
             if ((board9Piece == board7Piece && board9Piece == board8Piece) ||
                     (board9Piece == board3Piece && board9Piece == board6Piece) ||
                     (board9Piece == board5Piece && board9Piece == board1Piece)) {
                 //player wins the game
+                setAllBoardsUnselectable();
             } else if (isThereAGlobalTie()) {
                 //player ties the game
+                setAllBoardsUnselectable();
             }
         }
+    }
+
+    private void setAllBoardsUnselectable() {
+        unselectableBoardMap.put(1, Piece.UNSELECTABLE.getValue());
+        unselectableBoardMap.put(2, Piece.UNSELECTABLE.getValue());
+        unselectableBoardMap.put(3, Piece.UNSELECTABLE.getValue());
+        unselectableBoardMap.put(4, Piece.UNSELECTABLE.getValue());
+        unselectableBoardMap.put(5, Piece.UNSELECTABLE.getValue());
+        unselectableBoardMap.put(6, Piece.UNSELECTABLE.getValue());
+        unselectableBoardMap.put(7, Piece.UNSELECTABLE.getValue());
+        unselectableBoardMap.put(8, Piece.UNSELECTABLE.getValue());
+        unselectableBoardMap.put(9, Piece.UNSELECTABLE.getValue());
     }
 }
