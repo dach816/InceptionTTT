@@ -1,4 +1,4 @@
-package com.hfad.inceptionttt;
+package com.dach816.inceptionttt;
 
 /**
  * Enum for the different piece options: none, O, X, unselectable

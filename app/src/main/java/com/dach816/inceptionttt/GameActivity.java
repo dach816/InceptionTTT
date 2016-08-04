@@ -1,12 +1,10 @@
-package com.hfad.inceptionttt;
+package com.dach816.inceptionttt;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
-import java.sql.SQLOutput;
 
 public class GameActivity extends AppCompatActivity {
     private int cell1Piece;

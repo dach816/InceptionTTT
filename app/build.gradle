@@ -5,7 +5,7 @@ android {
     buildToolsVersion "24.0.0"
 
     defaultConfig {
-        applicationId "com.hfad.inceptionttt"
+        applicationId "com.dach816.inceptionttt"
         minSdkVersion 15
         targetSdkVersion 24
         versionCode 1
