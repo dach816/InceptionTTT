@@ -136,134 +136,6 @@
 
     </LinearLayout>
 
-    <!--This is the layout for the 9 buttons to select a board-->
-    <LinearLayout
-        android:layout_width="@dimen/board_width"
-        android:layout_height="@dimen/board_height"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_weight="1">
-
-            <ImageButton
-                android:id="@+id/boardButton1"
-                android:layout_width="@dimen/max_size_piece"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:background="@android:color/transparent"
-                android:onClick="selectBoard1"/>
-
-            <ImageButton
-                android:id="@+id/boardButton2"
-                android:layout_width="@dimen/max_size_piece"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:background="@android:color/transparent"
-                android:onClick="selectBoard2"/>
-
-            <ImageButton
-                android:id="@+id/boardButton3"
-                android:layout_width="@dimen/max_size_piece"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:background="@android:color/transparent"
-                android:onClick="selectBoard3"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_weight="1">
-
-            <ImageButton
-                android:id="@+id/boardButton4"
-                android:layout_width="@dimen/max_size_piece"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:background="@android:color/transparent"
-                android:onClick="selectBoard4"/>
-
-            <ImageButton
-                android:id="@+id/boardButton5"
-                android:layout_width="@dimen/max_size_piece"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:background="@android:color/transparent"
-                android:onClick="selectBoard5"/>
-
-            <ImageButton
-                android:id="@+id/boardButton6"
-                android:layout_width="@dimen/max_size_piece"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:background="@android:color/transparent"
-                android:onClick="selectBoard6"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_weight="1">
-
-            <ImageButton
-                android:id="@+id/boardButton7"
-                android:layout_width="@dimen/max_size_piece"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:background="@android:color/transparent"
-                android:onClick="selectBoard7"/>
-
-            <ImageButton
-                android:id="@+id/boardButton8"
-                android:layout_width="@dimen/max_size_piece"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:background="@android:color/transparent"
-                android:onClick="selectBoard8"/>
-
-            <ImageButton
-                android:id="@+id/boardButton9"
-                android:layout_width="@dimen/max_size_piece"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:padding="@dimen/piece_margin"
-                android:scaleType="fitCenter"
-                android:background="@android:color/transparent"
-                android:onClick="selectBoard9"/>
-        </LinearLayout>
-
-    </LinearLayout>
-
     <!--This is the layout for the pieces (X's and O's) for each small cell-->
     <LinearLayout
         android:layout_width="@dimen/board_width"
@@ -1069,6 +941,134 @@
                 android:adjustViewBounds="true"
                 android:padding="@dimen/piece_margin"
                 android:scaleType="fitCenter" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--This is the layout for the 9 buttons to select a board-->
+    <LinearLayout
+        android:layout_width="@dimen/board_width"
+        android:layout_height="@dimen/board_height"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/boardButton1"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:onClick="selectBoard1"/>
+
+            <ImageButton
+                android:id="@+id/boardButton2"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:onClick="selectBoard2"/>
+
+            <ImageButton
+                android:id="@+id/boardButton3"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:onClick="selectBoard3"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/boardButton4"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:onClick="selectBoard4"/>
+
+            <ImageButton
+                android:id="@+id/boardButton5"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:onClick="selectBoard5"/>
+
+            <ImageButton
+                android:id="@+id/boardButton6"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:onClick="selectBoard6"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/boardButton7"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:onClick="selectBoard7"/>
+
+            <ImageButton
+                android:id="@+id/boardButton8"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:onClick="selectBoard8"/>
+
+            <ImageButton
+                android:id="@+id/boardButton9"
+                android:layout_width="@dimen/max_size_piece"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/piece_margin"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:onClick="selectBoard9"/>
         </LinearLayout>
 
     </LinearLayout>
