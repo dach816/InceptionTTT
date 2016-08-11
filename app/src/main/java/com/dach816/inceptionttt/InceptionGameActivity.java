@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -209,6 +210,15 @@ public class InceptionGameActivity extends AppCompatActivity {
         if (isInteractiveBoardVisible()) {
             placePieceByCell(9, (ImageButton) findViewById(R.id.cellButton9));
         }
+    }
+
+    public void selectMainMenu(View view) {
+        //TODO: Go to main menu
+    }
+
+    public void selectPlayAgain(View view) {
+        restart();
+        hidePopup();
     }
 
     private void placePieceByCell(int cellNumber, ImageButton button) {
@@ -753,6 +763,8 @@ public class InceptionGameActivity extends AppCompatActivity {
     }
 
     private void checkGameForWinner() {
+        boolean winner = false;
+        boolean tie = false;
         int board1Piece = unselectableBoardMap.get(1);
         int board2Piece = unselectableBoardMap.get(2);
         int board3Piece = unselectableBoardMap.get(3);
@@ -767,38 +779,38 @@ public class InceptionGameActivity extends AppCompatActivity {
             if ((board1Piece == board2Piece && board1Piece == board3Piece) ||
                     (board1Piece == board4Piece && board1Piece == board7Piece) ||
                     (board1Piece == board5Piece && board1Piece == board9Piece)) {
-                //player wins the game
+                winner = true;
                 setAllBoardsUnselectable();
             } else if (isThereAGlobalTie()) {
-                //player ties the game
+                tie = true;
                 setAllBoardsUnselectable();
             }
         } else if (selectedBoardNumber == 2) {
             if ((board2Piece == board1Piece && board2Piece == board3Piece) ||
                     (board2Piece == board5Piece && board2Piece == board8Piece)) {
-                //player wins the game
+                winner = true;
                 setAllBoardsUnselectable();
             } else if (isThereAGlobalTie()) {
-                //player ties the game
+                tie = true;
                 setAllBoardsUnselectable();
             }
         } else if (selectedBoardNumber == 3) {
             if ((board3Piece == board1Piece && board3Piece == board2Piece) ||
                     (board3Piece == board6Piece && board3Piece == board9Piece) ||
                     (board3Piece == board5Piece && board3Piece == board7Piece)) {
-                //player wins the game
+                winner = true;
                 setAllBoardsUnselectable();
             } else if (isThereAGlobalTie()) {
-                //player ties the game
+                tie = true;
                 setAllBoardsUnselectable();
             }
         } else if (selectedBoardNumber == 4) {
             if ((board4Piece == board1Piece && board4Piece == board7Piece) ||
                     (board4Piece == board5Piece && board4Piece == board6Piece)) {
-                //player wins the game
+                winner = true;
                 setAllBoardsUnselectable();
             } else if (isThereAGlobalTie()) {
-                //player ties the game
+                tie = true;
                 setAllBoardsUnselectable();
             }
         } else if (selectedBoardNumber == 5) {
@@ -806,50 +818,62 @@ public class InceptionGameActivity extends AppCompatActivity {
                     (board5Piece == board4Piece && board5Piece == board6Piece) ||
                     (board5Piece == board1Piece && board5Piece == board9Piece) ||
                     (board5Piece == board3Piece && board5Piece == board7Piece)) {
-                //player wins the game
+                winner = true;
                 setAllBoardsUnselectable();
             } else if (isThereAGlobalTie()) {
-                //player ties the game
+                tie = true;
                 setAllBoardsUnselectable();
             }
         } else if (selectedBoardNumber == 6) {
             if ((board6Piece == board3Piece && board6Piece == board9Piece) ||
                     (board6Piece == board4Piece && board6Piece == board5Piece)) {
-                //player wins the game
+                winner = true;
                 setAllBoardsUnselectable();
             } else if (isThereAGlobalTie()) {
-                //player ties the game
+                tie = true;
                 setAllBoardsUnselectable();
             }
         } else if (selectedBoardNumber == 7) {
             if ((board7Piece == board1Piece && board7Piece == board4Piece) ||
                     (board7Piece == board8Piece && board7Piece == board9Piece) ||
                     (board7Piece == board5Piece && board7Piece == board3Piece)) {
-                //player wins the game
+                winner = true;
                 setAllBoardsUnselectable();
             } else if (isThereAGlobalTie()) {
-                //player ties the game
+                tie = true;
                 setAllBoardsUnselectable();
             }
         } else if (selectedBoardNumber == 8) {
             if ((board8Piece == board2Piece && board8Piece == board5Piece) ||
                     (board8Piece == board7Piece && board8Piece == board9Piece)) {
-                //player wins the game
+                winner = true;
                 setAllBoardsUnselectable();
             } else if (isThereAGlobalTie()) {
-                //player ties the game
+                tie = true;
                 setAllBoardsUnselectable();
             }
         } else if (selectedBoardNumber == 9) {
             if ((board9Piece == board7Piece && board9Piece == board8Piece) ||
                     (board9Piece == board3Piece && board9Piece == board6Piece) ||
                     (board9Piece == board5Piece && board9Piece == board1Piece)) {
-                //player wins the game
+                winner = true;
                 setAllBoardsUnselectable();
             } else if (isThereAGlobalTie()) {
-                //player ties the game
+                tie = true;
                 setAllBoardsUnselectable();
             }
+        }
+
+        if (winner) {
+            if (isCurrentPlayerX) {
+                showPopup(EndGameState.X_WINS);
+            }
+            else {
+                showPopup(EndGameState.O_WINS);
+            }
+        }
+        else if (tie) {
+            showPopup(EndGameState.TIE);
         }
     }
 
@@ -912,5 +936,49 @@ public class InceptionGameActivity extends AppCompatActivity {
         }
 
         //Prompt user to select a board
+    }
+
+    private void showPopup(EndGameState state) {
+        ImageView popupWindow = (ImageView) findViewById(R.id.popup);
+        popupWindow.setImageResource(R.drawable.popup_window);
+
+        TextView message = (TextView) findViewById(R.id.popup_text);
+        if (state == EndGameState.X_WINS) {
+            message.setText(R.string.popup_message_winner);
+        }
+        else if (state == EndGameState.O_WINS) {
+            message.setText(R.string.popup_message_loser);
+        }
+        else if (state == EndGameState.TIE) {
+            message.setText(R.string.popup_message_tie);
+        }
+
+        ImageButton topButton = (ImageButton) findViewById(R.id.popup_button_top);
+        topButton.setImageResource(R.drawable.selection_button);
+        ImageButton bottomButton = (ImageButton) findViewById(R.id.popup_button_bottom);
+        bottomButton.setImageResource(R.drawable.selection_button);
+
+        TextView topButtonText = (TextView) findViewById(R.id.popup_top_button_text);
+        topButtonText.setText(R.string.play_again);
+        TextView bottomButtonText = (TextView) findViewById(R.id.popup_bottom_button_text);
+        bottomButtonText.setText(R.string.main_menu);
+    }
+
+    private void hidePopup() {
+        ImageView popupWindow = (ImageView) findViewById(R.id.popup);
+        popupWindow.setImageResource(android.R.color.transparent);
+
+        TextView message = (TextView) findViewById(R.id.popup_text);
+        message.setText("");
+
+        ImageButton topButton = (ImageButton) findViewById(R.id.popup_button_top);
+        topButton.setImageResource(android.R.color.transparent);
+        ImageButton bottomButton = (ImageButton) findViewById(R.id.popup_button_bottom);
+        bottomButton.setImageResource(android.R.color.transparent);
+
+        TextView topButtonText = (TextView) findViewById(R.id.popup_top_button_text);
+        topButtonText.setText("");
+        TextView bottomButtonText = (TextView) findViewById(R.id.popup_bottom_button_text);
+        bottomButtonText.setText("");
     }
 }

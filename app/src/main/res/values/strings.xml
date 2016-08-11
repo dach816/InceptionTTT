@@ -5,4 +5,9 @@
     <string name="player_x_wins">Player X wins!!</string>
     <string name="action_restart">Restart</string>
     <string name="action_settings">Settings</string>
+    <string name="popup_message_winner">You won!!</string>
+    <string name="popup_message_tie">It\'s a tie!</string>
+    <string name="popup_message_loser">You lost.</string>
+    <string name="play_again">Play Again?</string>
+    <string name="main_menu">Main Menu</string>
 </resources>
