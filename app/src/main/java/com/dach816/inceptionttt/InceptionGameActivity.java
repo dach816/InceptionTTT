@@ -2,6 +2,9 @@ package com.dach816.inceptionttt;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -33,6 +36,34 @@ public class InceptionGameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inception_game);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(myToolbar);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                // User chose the "Settings" item, show the app settings UI...
+                return true;
+
+            case R.id.action_restart:
+                restart();
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 
     public void selectBoard1(View view) {
@@ -832,5 +863,54 @@ public class InceptionGameActivity extends AppCompatActivity {
         unselectableBoardMap.put(7, Piece.UNSELECTABLE.getValue());
         unselectableBoardMap.put(8, Piece.UNSELECTABLE.getValue());
         unselectableBoardMap.put(9, Piece.UNSELECTABLE.getValue());
+    }
+
+    private void restart() {
+        playerCanSelectBoard = true;
+        isCurrentPlayerX = true;
+        selectedBoardNumber = 0;
+        unselectableBoardMap = createUnselectableBoardMap();
+        cellPieceMap = createCellPieceMap();
+
+        //Hide the interactive board
+        ImageView interactiveBoardImageView = (ImageView) findViewById(R.id.interactiveBoard);
+        interactiveBoardImageView.setImageResource(android.R.color.transparent);
+
+        //Hide the cell pieces within the interactive board
+        ImageButton cellPieceImageButton = (ImageButton) findViewById(R.id.cellButton1);
+        cellPieceImageButton.setImageResource(android.R.color.transparent);
+        cellPieceImageButton = (ImageButton) findViewById(R.id.cellButton2);
+        cellPieceImageButton.setImageResource(android.R.color.transparent);
+        cellPieceImageButton = (ImageButton) findViewById(R.id.cellButton3);
+        cellPieceImageButton.setImageResource(android.R.color.transparent);
+        cellPieceImageButton = (ImageButton) findViewById(R.id.cellButton4);
+        cellPieceImageButton.setImageResource(android.R.color.transparent);
+        cellPieceImageButton = (ImageButton) findViewById(R.id.cellButton5);
+        cellPieceImageButton.setImageResource(android.R.color.transparent);
+        cellPieceImageButton = (ImageButton) findViewById(R.id.cellButton6);
+        cellPieceImageButton.setImageResource(android.R.color.transparent);
+        cellPieceImageButton = (ImageButton) findViewById(R.id.cellButton7);
+        cellPieceImageButton.setImageResource(android.R.color.transparent);
+        cellPieceImageButton = (ImageButton) findViewById(R.id.cellButton8);
+        cellPieceImageButton.setImageResource(android.R.color.transparent);
+        cellPieceImageButton = (ImageButton) findViewById(R.id.cellButton9);
+        cellPieceImageButton.setImageResource(android.R.color.transparent);
+
+        for (int boardNum = 1; boardNum <= 9; boardNum++) {
+            for (int cellNum = 1; cellNum <= 9; cellNum++) {
+                //Set CellPiece values to NONE and clear the image from the image views
+                setCellPieceValue(boardNum, cellNum, Piece.NONE.getValue());
+                ImageView pieceImageView = (ImageView) findViewById(cellPieceResourceIdMap.get(boardNum).get(cellNum - 1));
+                pieceImageView.setImageResource(android.R.color.transparent);
+            }
+
+            //Resets the boards
+            ImageView boardImageView = (ImageView) findViewById(boardResourceIdMap.get(boardNum));
+            boardImageView.setImageResource(R.drawable.tictactoeboard);
+            ImageButton boardImageButton = (ImageButton) findViewById(boardButtonResourceIdMap.get(boardNum));
+            boardImageButton.setImageResource(android.R.color.transparent);
+        }
+
+        //Prompt user to select a board
     }
 }

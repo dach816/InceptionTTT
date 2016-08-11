@@ -3,4 +3,6 @@
     <string name="restart">Restart</string>
     <string name="player_o_wins">Player O wins!!</string>
     <string name="player_x_wins">Player X wins!!</string>
+    <string name="action_restart">Restart</string>
+    <string name="action_settings">Settings</string>
 </resources>
