@@ -1,5 +1,6 @@
 package com.dach816.inceptionttt;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +17,10 @@ import java.util.List;
 import java.util.Map;
 
 public class InceptionGameActivity extends AppCompatActivity {
+    //Is the game mode in single player
+    private boolean isSinglePlayer = false;
+    //Is the game over
+    private boolean isGameOver = false;
     //X always goes first
     private boolean isCurrentPlayerX = true;
     //Represents the currently selected board number, 1-9, and is 0 if no board is selected
@@ -33,12 +38,39 @@ public class InceptionGameActivity extends AppCompatActivity {
     //Map where the key is the CellPiece ID and the value is the CellPiece
     private Map<Integer, CellPiece> cellPieceMap = createCellPieceMap();
 
+    public static final String EXTRA_GAME_TYPE = "Game Type";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inception_game);
+
+        if (savedInstanceState != null) {
+            isSinglePlayer = savedInstanceState.getBoolean("isSinglePlayer");
+            isGameOver = savedInstanceState.getBoolean("isGameOver");
+            isCurrentPlayerX = savedInstanceState.getBoolean("isCurrentPlayerX");
+            selectedBoardNumber = savedInstanceState.getInt("selectedBoardNumber");
+            playerCanSelectBoard = savedInstanceState.getBoolean("playerCanSelectBoard");
+            unselectableBoardMap =
+                    unselectableBoardArrayToMap(savedInstanceState.getIntArray("unselectableBoardArray"));
+            cellPieceMap = cellPieceArrayToMap(savedInstanceState.getIntArray("cellPieceArray"));
+        }
+
         Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(myToolbar);
+        Intent intent = getIntent();
+        isSinglePlayer = intent.getBooleanExtra(EXTRA_GAME_TYPE, false);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putBoolean("isSinglePlayer", isSinglePlayer);
+        savedInstanceState.putBoolean("isGameOver", isGameOver);
+        savedInstanceState.putBoolean("isCurrentPlayerX", isCurrentPlayerX);
+        savedInstanceState.putInt("selectedBoardNumber", selectedBoardNumber);
+        savedInstanceState.putBoolean("playerCanSelectBoard", playerCanSelectBoard);
+        savedInstanceState.putIntArray("unselectableBoardArray", generateUnselectableBoardArray());
+        savedInstanceState.putIntArray("cellPieceArray", generateCellPieceArray());
     }
 
     @Override
@@ -53,11 +85,20 @@ public class InceptionGameActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_settings:
                 // User chose the "Settings" item, show the app settings UI...
+                //TODO: Add settings option
                 return true;
 
             case R.id.action_restart:
+                if (isGameOver) {
+                    hidePopup();
+                }
                 restart();
                 return true;
+
+            case R.id.action_menu:
+                Intent intent = new Intent(this, MainMenuActivity.class);
+                startActivity(intent);
+                //TODO: Save game state
 
             default:
                 // If we got here, the user's action was not recognized.
@@ -213,7 +254,9 @@ public class InceptionGameActivity extends AppCompatActivity {
     }
 
     public void selectMainMenu(View view) {
-        //TODO: Go to main menu
+        //Go to the main menu
+        Intent intent = new Intent(this, MainMenuActivity.class);
+        startActivity(intent);
     }
 
     public void selectPlayAgain(View view) {
@@ -248,6 +291,15 @@ public class InceptionGameActivity extends AppCompatActivity {
             //Setup for next player
             if (unselectableBoardMap.get(cellNumber) == 0) {
                 selectBoard(cellNumber, boardResourceIdMap.get(cellNumber));
+
+                //Prompt player to take turn
+                TextView gameMessage = (TextView) findViewById(R.id.game_message);
+                if (isCurrentPlayerX) {
+                    gameMessage.setText(R.string.player_x_turn);
+                }
+                else {
+                    gameMessage.setText("");
+                }
             }
             else {
                 int prevSelectedBoardNumber = selectedBoardNumber;
@@ -258,6 +310,13 @@ public class InceptionGameActivity extends AppCompatActivity {
                 ((ImageView) findViewById(R.id.interactiveBoard)).setImageResource(android.R.color.transparent);
 
                 //Prompt player to select a board
+                TextView gameMessage = (TextView) findViewById(R.id.game_message);
+                if (isCurrentPlayerX) {
+                    gameMessage.setText(R.string.player_x_select_board);
+                }
+                else {
+                    gameMessage.setText("");
+                }
             }
         }
     }
@@ -315,6 +374,14 @@ public class InceptionGameActivity extends AppCompatActivity {
             }
 
             playerCanSelectBoard = false;
+
+            TextView gameMessage = (TextView) findViewById(R.id.game_message);
+            if (isCurrentPlayerX) {
+                gameMessage.setText(R.string.player_x_turn);
+            }
+            else {
+                gameMessage.setText("");
+            }
         }
     }
 
@@ -871,9 +938,11 @@ public class InceptionGameActivity extends AppCompatActivity {
             else {
                 showPopup(EndGameState.O_WINS);
             }
+            isGameOver = true;
         }
         else if (tie) {
             showPopup(EndGameState.TIE);
+            isGameOver = true;
         }
     }
 
@@ -936,6 +1005,8 @@ public class InceptionGameActivity extends AppCompatActivity {
         }
 
         //Prompt user to select a board
+        TextView gameMessage = (TextView) findViewById(R.id.game_message);
+        gameMessage.setText(R.string.player_x_select_board);
     }
 
     private void showPopup(EndGameState state) {
@@ -980,5 +1051,54 @@ public class InceptionGameActivity extends AppCompatActivity {
         topButtonText.setText("");
         TextView bottomButtonText = (TextView) findViewById(R.id.popup_bottom_button_text);
         bottomButtonText.setText("");
+    }
+
+    private int[] generateUnselectableBoardArray() {
+        int[] array = new int[unselectableBoardMap.size()];
+
+        for (int i = 1; i <=9; i++) {
+            array[i] = unselectableBoardMap.get(i);
+        }
+
+        return array;
+    }
+
+    private int[] generateCellPieceArray() {
+        int[] array = new int[cellPieceMap.size()];
+        int index = 0;
+
+        for (int boardNum = 1; boardNum <= 9; boardNum++) {
+            for (int cellNum = 1; cellNum <= 9; cellNum++) {
+                array[index++] = cellPieceMap.get(generateCellPieceId(boardNum, cellNum)).getPieceValue();
+            }
+        }
+
+        return array;
+    }
+
+    private Map<Integer, Integer> unselectableBoardArrayToMap(int[] array) {
+        Map<Integer, Integer> map = new HashMap<>(array.length);
+        int key = 1;
+
+        for (int value : array) {
+            map.put(key++, value);
+        }
+
+        return map;
+    }
+
+    private Map<Integer, CellPiece> cellPieceArrayToMap(int[] array) {
+        Map<Integer, CellPiece> map = new HashMap<>(array.length);
+        int index = 0;
+
+        for (int boardNum = 1; boardNum <= 9; boardNum++) {
+            for (int cellNum = 1; cellNum <= 9; cellNum++) {
+                CellPiece cellPiece = new CellPiece(boardNum, cellNum);
+                cellPiece.setPieceValue(array[index]);
+                map.put(generateCellPieceId(boardNum, cellNum), cellPiece);
+            }
+        }
+
+        return map;
     }
 }
