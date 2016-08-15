@@ -1225,7 +1225,7 @@
 
         <TextView
             android:id="@+id/popup_text"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:gravity="center_horizontal"

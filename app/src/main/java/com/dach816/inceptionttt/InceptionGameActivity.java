@@ -16,7 +16,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.dach816.inceptionttt.GameDifficulty.getDifficulty;
+
 public class InceptionGameActivity extends AppCompatActivity {
+    //The game difficulty (or mode), the default is easy
+    private GameDifficulty gameDifficulty = GameDifficulty.EASY;
     //Is the game mode in single player
     private boolean isSinglePlayer = false;
     //Is the game over
@@ -44,8 +48,13 @@ public class InceptionGameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inception_game);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(myToolbar);
+        Intent intent = getIntent();
+        isSinglePlayer = intent.getBooleanExtra(EXTRA_GAME_TYPE, false);
 
         if (savedInstanceState != null) {
+            gameDifficulty = getDifficulty(savedInstanceState.getInt("gameDifficulty"));
             isSinglePlayer = savedInstanceState.getBoolean("isSinglePlayer");
             isGameOver = savedInstanceState.getBoolean("isGameOver");
             isCurrentPlayerX = savedInstanceState.getBoolean("isCurrentPlayerX");
@@ -55,15 +64,11 @@ public class InceptionGameActivity extends AppCompatActivity {
                     unselectableBoardArrayToMap(savedInstanceState.getIntArray("unselectableBoardArray"));
             cellPieceMap = cellPieceArrayToMap(savedInstanceState.getIntArray("cellPieceArray"));
         }
-
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
-        setSupportActionBar(myToolbar);
-        Intent intent = getIntent();
-        isSinglePlayer = intent.getBooleanExtra(EXTRA_GAME_TYPE, false);
     }
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putInt("gameDifficulty", gameDifficulty.getValue());
         savedInstanceState.putBoolean("isSinglePlayer", isSinglePlayer);
         savedInstanceState.putBoolean("isGameOver", isGameOver);
         savedInstanceState.putBoolean("isCurrentPlayerX", isCurrentPlayerX);
@@ -96,8 +101,7 @@ public class InceptionGameActivity extends AppCompatActivity {
                 return true;
 
             case R.id.action_menu:
-                Intent intent = new Intent(this, MainMenuActivity.class);
-                startActivity(intent);
+                showPopup(EndGameState.NONE);
                 //TODO: Save game state
 
             default:
@@ -260,8 +264,15 @@ public class InceptionGameActivity extends AppCompatActivity {
     }
 
     public void selectPlayAgain(View view) {
-        restart();
+        //If the game is over restart the game, otherwise just resume it
+        if (isGameOver) {
+            restart();
+        }
         hidePopup();
+    }
+
+    public static int generateCellPieceId(int boardNum, int cellNum) {
+        return boardNum * 10 + cellNum;
     }
 
     private void placePieceByCell(int cellNumber, ImageButton button) {
@@ -286,43 +297,47 @@ public class InceptionGameActivity extends AppCompatActivity {
             //check for board winner/tie
             checkBoardForWinner(cellNumber);
 
-            isCurrentPlayerX = !isCurrentPlayerX;
 
-            //Setup for next player
-            if (unselectableBoardMap.get(cellNumber) == 0) {
-                selectBoard(cellNumber, boardResourceIdMap.get(cellNumber));
+            if (!isGameOver) {
+                isCurrentPlayerX = !isCurrentPlayerX;
 
-                //Prompt player to take turn
-                TextView gameMessage = (TextView) findViewById(R.id.game_message);
-                if (isCurrentPlayerX) {
-                    gameMessage.setText(R.string.player_x_turn);
-                }
-                else {
-                    gameMessage.setText("");
-                }
-            }
-            else {
-                int prevSelectedBoardNumber = selectedBoardNumber;
-                playerCanSelectBoard = true;
-                selectedBoardNumber = 0;
-                clearButtonPieces();
-                ((ImageView) findViewById(boardResourceIdMap.get(prevSelectedBoardNumber))).setImageResource(R.drawable.tictactoeboard);
-                ((ImageView) findViewById(R.id.interactiveBoard)).setImageResource(android.R.color.transparent);
+                //Setup for next player
+                if (unselectableBoardMap.get(cellNumber) == 0) {
+                    selectBoard(cellNumber, boardResourceIdMap.get(cellNumber));
 
-                //Prompt player to select a board
-                TextView gameMessage = (TextView) findViewById(R.id.game_message);
-                if (isCurrentPlayerX) {
-                    gameMessage.setText(R.string.player_x_select_board);
-                }
-                else {
-                    gameMessage.setText("");
+                    //Prompt player to take turn
+                    if (isCurrentPlayerX) {
+                        promptUser(R.string.player_x_turn);
+                    } else if (!isSinglePlayer) {
+                        promptUser(R.string.player_o_turn);
+                    } else {
+                        promptUser(R.string.empty);
+                        aIMakesMove();
+                    }
+                } else {
+                    int prevSelectedBoardNumber = selectedBoardNumber;
+                    playerCanSelectBoard = true;
+                    selectedBoardNumber = 0;
+                    clearButtonPieces();
+                    ((ImageView) findViewById(boardResourceIdMap.get(prevSelectedBoardNumber))).setImageResource(R.drawable.tictactoeboard);
+                    ((ImageView) findViewById(R.id.interactiveBoard)).setImageResource(android.R.color.transparent);
+
+                    //Prompt player to select a board
+                    if (isCurrentPlayerX) {
+                        promptUser(R.string.player_x_select_board);
+                    } else if (!isSinglePlayer) {
+                        promptUser(R.string.player_o_select_board);
+                    } else {
+                        promptUser(R.string.empty);
+                        aISelectsBoard();
+                    }
                 }
             }
         }
     }
 
     private void selectBoard(int boardNumber, int boardImageId) {
-        if (unselectableBoardMap.get(boardNumber) == 0) {
+        if (!isGameOver && unselectableBoardMap.get(boardNumber) == 0) {
             ImageView board = (ImageView) findViewById(boardImageId);
             ImageView interactiveBoard = (ImageView) findViewById(R.id.interactiveBoard);
 
@@ -375,12 +390,15 @@ public class InceptionGameActivity extends AppCompatActivity {
 
             playerCanSelectBoard = false;
 
-            TextView gameMessage = (TextView) findViewById(R.id.game_message);
             if (isCurrentPlayerX) {
-                gameMessage.setText(R.string.player_x_turn);
+                promptUser(R.string.player_x_turn);
+            }
+            else if (!isSinglePlayer) {
+                promptUser(R.string.player_o_turn);
             }
             else {
-                gameMessage.setText("");
+                promptUser(R.string.empty);
+                aIMakesMove();
             }
         }
     }
@@ -660,10 +678,6 @@ public class InceptionGameActivity extends AppCompatActivity {
         map.put(cellPiece.getId(), cellPiece);
 
         return map;
-    }
-
-    private int generateCellPieceId(int boardNum, int cellNum) {
-        return boardNum * 10 + cellNum;
     }
 
     private boolean isInteractiveBoardVisible() {
@@ -959,6 +973,7 @@ public class InceptionGameActivity extends AppCompatActivity {
     }
 
     private void restart() {
+        isGameOver = false;
         playerCanSelectBoard = true;
         isCurrentPlayerX = true;
         selectedBoardNumber = 0;
@@ -1005,8 +1020,12 @@ public class InceptionGameActivity extends AppCompatActivity {
         }
 
         //Prompt user to select a board
+        promptUser(R.string.player_x_select_board);
+    }
+
+    private void promptUser(int messageResourceId) {
         TextView gameMessage = (TextView) findViewById(R.id.game_message);
-        gameMessage.setText(R.string.player_x_select_board);
+        gameMessage.setText(messageResourceId);
     }
 
     private void showPopup(EndGameState state) {
@@ -1015,13 +1034,26 @@ public class InceptionGameActivity extends AppCompatActivity {
 
         TextView message = (TextView) findViewById(R.id.popup_text);
         if (state == EndGameState.X_WINS) {
-            message.setText(R.string.popup_message_winner);
+            if (isSinglePlayer) {
+                message.setText(R.string.popup_message_winner);
+            }
+            else {
+                message.setText(R.string.player_x_wins);
+            }
         }
         else if (state == EndGameState.O_WINS) {
-            message.setText(R.string.popup_message_loser);
+            if (isSinglePlayer) {
+                message.setText(R.string.popup_message_loser);
+            }
+            else {
+                message.setText(R.string.player_o_wins);
+            }
         }
         else if (state == EndGameState.TIE) {
             message.setText(R.string.popup_message_tie);
+        }
+        else if (state == EndGameState.NONE) {
+            message.setText(R.string.quit_popup_message);
         }
 
         ImageButton topButton = (ImageButton) findViewById(R.id.popup_button_top);
@@ -1030,7 +1062,12 @@ public class InceptionGameActivity extends AppCompatActivity {
         bottomButton.setImageResource(R.drawable.selection_button);
 
         TextView topButtonText = (TextView) findViewById(R.id.popup_top_button_text);
-        topButtonText.setText(R.string.play_again);
+        if (state == EndGameState.NONE) {
+            topButtonText.setText(R.string.resume);
+        }
+        else {
+            topButtonText.setText(R.string.play_again);
+        }
         TextView bottomButtonText = (TextView) findViewById(R.id.popup_bottom_button_text);
         bottomButtonText.setText(R.string.main_menu);
     }
@@ -1057,7 +1094,7 @@ public class InceptionGameActivity extends AppCompatActivity {
         int[] array = new int[unselectableBoardMap.size()];
 
         for (int i = 1; i <=9; i++) {
-            array[i] = unselectableBoardMap.get(i);
+            array[i - 1] = unselectableBoardMap.get(i);
         }
 
         return array;
@@ -1100,5 +1137,105 @@ public class InceptionGameActivity extends AppCompatActivity {
         }
 
         return map;
+    }
+
+    private void aIMakesMove() {
+        ITicTacToeAI ticTacToeAI;
+        switch (gameDifficulty) {
+            case EASY:
+                ticTacToeAI = new TicTacToeAIEasy(unselectableBoardMap, cellPieceMap);
+                break;
+            case MEDIUM:
+                ticTacToeAI = new TicTacToeAIMedium(unselectableBoardMap, cellPieceMap);
+                break;
+            case HARD:
+                //TODO: Create class for hard AI, add break statement
+            default:
+                ticTacToeAI = new TicTacToeAIEasy(unselectableBoardMap, cellPieceMap);
+                break;
+        }
+
+        int turnLocation = ticTacToeAI.makeMove(selectedBoardNumber);
+        switch (turnLocation) {
+            case 1:
+                placePieceByCell(1, (ImageButton) findViewById(R.id.cellButton1));
+                break;
+            case 2:
+                placePieceByCell(2, (ImageButton) findViewById(R.id.cellButton2));
+                break;
+            case 3:
+                placePieceByCell(3, (ImageButton) findViewById(R.id.cellButton3));
+                break;
+            case 4:
+                placePieceByCell(4, (ImageButton) findViewById(R.id.cellButton4));
+                break;
+            case 5:
+                placePieceByCell(5, (ImageButton) findViewById(R.id.cellButton5));
+                break;
+            case 6:
+                placePieceByCell(6, (ImageButton) findViewById(R.id.cellButton6));
+                break;
+            case 7:
+                placePieceByCell(7, (ImageButton) findViewById(R.id.cellButton7));
+                break;
+            case 8:
+                placePieceByCell(8, (ImageButton) findViewById(R.id.cellButton8));
+                break;
+            case 9:
+                placePieceByCell(9, (ImageButton) findViewById(R.id.cellButton9));
+                break;
+            default:
+                throw new RuntimeException("AI selected cell #" + turnLocation);
+        }
+    }
+
+    private void aISelectsBoard() {
+        ITicTacToeAI ticTacToeAI;
+        switch (gameDifficulty) {
+            case EASY:
+                ticTacToeAI = new TicTacToeAIEasy(unselectableBoardMap, cellPieceMap);
+                break;
+            case MEDIUM:
+                ticTacToeAI = new TicTacToeAIMedium(unselectableBoardMap, cellPieceMap);
+                break;
+            case HARD:
+                //TODO: Create class for hard AI, add break statement
+            default:
+                ticTacToeAI = new TicTacToeAIEasy(unselectableBoardMap, cellPieceMap);
+                break;
+        }
+
+        int turnLocation = ticTacToeAI.selectBoard();
+        switch (turnLocation) {
+            case 1:
+                selectBoard(1, R.id.board1);
+                break;
+            case 2:
+                selectBoard(2, R.id.board2);
+                break;
+            case 3:
+                selectBoard(3, R.id.board3);
+                break;
+            case 4:
+                selectBoard(4, R.id.board4);
+                break;
+            case 5:
+                selectBoard(5, R.id.board5);
+                break;
+            case 6:
+                selectBoard(6, R.id.board6);
+                break;
+            case 7:
+                selectBoard(7, R.id.board7);
+                break;
+            case 8:
+                selectBoard(8, R.id.board8);
+                break;
+            case 9:
+                selectBoard(9, R.id.board9);
+                break;
+            default:
+                throw new RuntimeException("AI selected board #" + turnLocation);
+        }
     }
 }
