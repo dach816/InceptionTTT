@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference     android:title="Game Difficulty"
+                        android:summary="Selection will only apply to the current game"
+                        android:key="difficulty"
+                        android:defaultValue="Easy"
+                        android:entries="@array/pref_difficulty"
+                        android:entryValues="@array/pref_difficulty" />
+</PreferenceScreen>

@@ -8,4 +8,6 @@
     <dimen name="piece_margin">14dp</dimen>
     <dimen name="piece_margin_with_line">34dp</dimen>
     <dimen name="popup_margin">36dp</dimen>
+    <dimen name="cell_button_dimen">34dp</dimen>
+    <dimen name="cell_button_padding">8dp</dimen>
 </resources>

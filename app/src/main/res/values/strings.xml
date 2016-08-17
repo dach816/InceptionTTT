@@ -20,4 +20,10 @@
     <string name="main_menu">Main Menu</string>
     <string name="quit_popup_message">Are you sure you want to end the game? The game will not be saved.</string>
     <string name="resume">Resume</string>
+
+    <string-array name="pref_difficulty">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
 </resources>

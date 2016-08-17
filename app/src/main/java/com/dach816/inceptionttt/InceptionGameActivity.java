@@ -2,6 +2,7 @@ package com.dach816.inceptionttt;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -90,7 +91,15 @@ public class InceptionGameActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_settings:
                 // User chose the "Settings" item, show the app settings UI...
-                //TODO: Add settings option
+                //TODO: Get settings to work
+//                if (isSinglePlayer) {
+//                    Intent intent = new Intent(this, SettingsActivity.class);
+//                    intent.putExtra(SettingsActivity.DIFFICULTY_EXTRA, gameDifficulty.getValue());
+//                    startActivity(intent);
+//
+//                    SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+//                    gameDifficulty = getDifficulty(SP.getString("difficulty", "Easy"));
+//                }
                 return true;
 
             case R.id.action_restart:
@@ -275,7 +284,7 @@ public class InceptionGameActivity extends AppCompatActivity {
         return boardNum * 10 + cellNum;
     }
 
-    private void placePieceByCell(int cellNumber, ImageButton button) {
+    private void placePieceByCell(final int cellNumber, ImageButton button) {
         CellPiece cellPiece = cellPieceMap.get(generateCellPieceId(selectedBoardNumber, cellNumber));
         List<Integer> cellPieceResourceIds = cellPieceResourceIdMap.get(selectedBoardNumber);
         int cellPieceResourceId = cellPieceResourceIds.get(cellNumber - 1);
@@ -294,55 +303,67 @@ public class InceptionGameActivity extends AppCompatActivity {
                 setCellPieceValue(selectedBoardNumber, cellNumber, Piece.O.getValue());
             }
 
-            //check for board winner/tie
-            checkBoardForWinner(cellNumber);
+            //Set a delay so the user can follow the game better
+            new CountDownTimer(500, 100) {
 
+                public void onTick(long millisUntilFinished) {
+                    System.out.println(millisUntilFinished + " millis until finished");
+                }
 
-            if (!isGameOver) {
-                isCurrentPlayerX = !isCurrentPlayerX;
+                public void onFinish() {
+                    //check for board winner/tie
+                    checkBoardForWinner(cellNumber);
 
-                //Setup for next player
-                if (unselectableBoardMap.get(cellNumber) == 0) {
-                    selectBoard(cellNumber, boardResourceIdMap.get(cellNumber));
+                    setupForNextTurn(cellNumber);
+                }
+            }.start();
+        }
+    }
 
-                    //Prompt player to take turn
-                    if (isCurrentPlayerX) {
-                        promptUser(R.string.player_x_turn);
-                    } else if (!isSinglePlayer) {
-                        promptUser(R.string.player_o_turn);
-                    } else {
-                        promptUser(R.string.empty);
-                        aIMakesMove();
-                    }
+    private void setupForNextTurn(int cellNumber) {
+        if (!isGameOver) {
+            isCurrentPlayerX = !isCurrentPlayerX;
+
+            if (unselectableBoardMap.get(cellNumber) == 0) {
+                selectBoard(cellNumber, boardResourceIdMap.get(cellNumber));
+
+                //Prompt player to take turn
+                if (isCurrentPlayerX) {
+                    promptUser(R.string.player_x_turn);
+                } else if (!isSinglePlayer) {
+                    promptUser(R.string.player_o_turn);
                 } else {
-                    int prevSelectedBoardNumber = selectedBoardNumber;
-                    playerCanSelectBoard = true;
-                    selectedBoardNumber = 0;
-                    clearButtonPieces();
-                    ((ImageView) findViewById(boardResourceIdMap.get(prevSelectedBoardNumber))).setImageResource(R.drawable.tictactoeboard);
-                    ((ImageView) findViewById(R.id.interactiveBoard)).setImageResource(android.R.color.transparent);
+                    promptUser(R.string.empty);
+                    aIMakesMove();
+                }
+            } else {
+                int prevSelectedBoardNumber = selectedBoardNumber;
+                playerCanSelectBoard = true;
+                selectedBoardNumber = 0;
+                clearButtonPieces();
+                ((ImageView) findViewById(boardResourceIdMap.get(prevSelectedBoardNumber))).setImageResource(R.drawable.tictactoeboard);
+                ((ImageView) findViewById(R.id.interactiveBoard)).setImageResource(android.R.color.transparent);
 
-                    //Prompt player to select a board
-                    if (isCurrentPlayerX) {
-                        promptUser(R.string.player_x_select_board);
-                    } else if (!isSinglePlayer) {
-                        promptUser(R.string.player_o_select_board);
-                    } else {
-                        promptUser(R.string.empty);
-                        aISelectsBoard();
-                    }
+                //Prompt player to select a board
+                if (isCurrentPlayerX) {
+                    promptUser(R.string.player_x_select_board);
+                } else if (!isSinglePlayer) {
+                    promptUser(R.string.player_o_select_board);
+                } else {
+                    promptUser(R.string.empty);
+                    aISelectsBoard();
                 }
             }
         }
     }
 
-    private void selectBoard(int boardNumber, int boardImageId) {
+    private void selectBoard(final int boardNumber, int boardImageId) {
         if (!isGameOver && unselectableBoardMap.get(boardNumber) == 0) {
-            ImageView board = (ImageView) findViewById(boardImageId);
+            final ImageView board = (ImageView) findViewById(boardImageId);
             ImageView interactiveBoard = (ImageView) findViewById(R.id.interactiveBoard);
 
             //Unselect the previously selected board
-            int prevSelectedBoardNumber = selectedBoardNumber;
+            final int prevSelectedBoardNumber = selectedBoardNumber;
             selectedBoardNumber = boardNumber;
             if (prevSelectedBoardNumber > 0 && prevSelectedBoardNumber != boardNumber) {
                 ImageView prevSelectedBoard = (ImageView) findViewById(boardResourceIdMap.get(prevSelectedBoardNumber));
@@ -389,17 +410,6 @@ public class InceptionGameActivity extends AppCompatActivity {
             }
 
             playerCanSelectBoard = false;
-
-            if (isCurrentPlayerX) {
-                promptUser(R.string.player_x_turn);
-            }
-            else if (!isSinglePlayer) {
-                promptUser(R.string.player_o_turn);
-            }
-            else {
-                promptUser(R.string.empty);
-                aIMakesMove();
-            }
         }
     }
 
