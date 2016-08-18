@@ -32,8 +32,7 @@ public class MainMenuActivity extends AppCompatActivity {
         previouslySavedSinglePlayerGame = false;
         previouslySavedMultiplayerGame = false;
 
-        Intent intent = new Intent(this, InceptionGameActivity.class);
-        intent.putExtra(InceptionGameActivity.EXTRA_GAME_TYPE, true);
+        Intent intent = new Intent(this, GameDifficultyActivity.class);
         startActivity(intent);
     }
 

@@ -1,16 +1,20 @@
 <resources>
     <string name="app_name">InceptionTTT</string>
-    <string name="empty"></string>
+    <string name="empty"/>
     <string name="game_name">Inception\nTic Tac Toe</string>
+    <string name="game_difficulty">Game Difficulty</string>
     <string name="single_player">Single Player</string>
     <string name="multiplayer">Multiplayer</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
     <string name="restart">Restart</string>
     <string name="player_o_wins">Player O wins!!</string>
     <string name="player_x_wins">Player X wins!!</string>
-    <string name="player_x_select_board">Player X, please select a board...</string>
-    <string name="player_o_select_board">Player O, please select a board...</string>
-    <string name="player_x_turn">Player X\'s turn...</string>
-    <string name="player_o_turn">Player O\'s turn...</string>
+    <string name="player_x_select_board">Player X, please select a board…</string>
+    <string name="player_o_select_board">Player O, please select a board…</string>
+    <string name="player_x_turn">Player X\'s turn…</string>
+    <string name="player_o_turn">Player O\'s turn…</string>
     <string name="action_restart">Restart</string>
     <string name="action_settings">Settings</string>
     <string name="popup_message_winner">You won!!</string>

@@ -44,6 +44,7 @@ public class InceptionGameActivity extends AppCompatActivity {
     private Map<Integer, CellPiece> cellPieceMap = createCellPieceMap();
 
     public static final String EXTRA_GAME_TYPE = "Game Type";
+    public static final String EXTRA_GAME_DIFFICULTY = "Game Difficulty";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class InceptionGameActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         Intent intent = getIntent();
         isSinglePlayer = intent.getBooleanExtra(EXTRA_GAME_TYPE, false);
+        gameDifficulty = getDifficulty(intent.getIntExtra(EXTRA_GAME_DIFFICULTY, GameDifficulty.EASY.getValue()));
 
         if (savedInstanceState != null) {
             gameDifficulty = getDifficulty(savedInstanceState.getInt("gameDifficulty"));
