@@ -22,88 +22,8 @@ public class TicTacToeAIEasy implements ITicTacToeAI {
      *  3. Making any move
      */
     public int makeMove(int selectedBoardNum) {
-        int cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 1);
-        int cell1Value = cellPieceMap.get(cellId).getPieceValue();
-        cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 2);
-        int cell2Value = cellPieceMap.get(cellId).getPieceValue();
-        cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 3);
-        int cell3Value = cellPieceMap.get(cellId).getPieceValue();
-        cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 4);
-        int cell4Value = cellPieceMap.get(cellId).getPieceValue();
-        cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 5);
-        int cell5Value = cellPieceMap.get(cellId).getPieceValue();
-        cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 6);
-        int cell6Value = cellPieceMap.get(cellId).getPieceValue();
-        cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 7);
-        int cell7Value = cellPieceMap.get(cellId).getPieceValue();
-        cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 8);
-        int cell8Value = cellPieceMap.get(cellId).getPieceValue();
-        cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 9);
-        int cell9Value = cellPieceMap.get(cellId).getPieceValue();
-
-        //Select cell 1
-        if (cell1Value == Piece.NONE.getValue() &&
-                (cell5Value > Piece.NONE.getValue() && cell5Value == cell9Value ||
-                        cell2Value > Piece.NONE.getValue() && cell2Value == cell3Value ||
-                        cell4Value > Piece.NONE.getValue() && cell4Value == cell7Value)) {
-            return 1;
-        }
-        //Select cell 2
-        if (cell2Value == Piece.NONE.getValue() &&
-                (cell1Value > Piece.NONE.getValue() && cell1Value == cell3Value ||
-                        cell5Value > Piece.NONE.getValue() && cell5Value == cell8Value)) {
-            return 2;
-        }
-        //Select cell 3
-        if (cell3Value == Piece.NONE.getValue() &&
-                (cell1Value > Piece.NONE.getValue() && cell1Value == cell2Value ||
-                        cell5Value > Piece.NONE.getValue() && cell5Value == cell7Value ||
-                        cell6Value > Piece.NONE.getValue() && cell6Value == cell9Value)) {
-            return 3;
-        }
-        //Select cell 4
-        if (cell4Value == Piece.NONE.getValue() &&
-                (cell1Value > Piece.NONE.getValue() && cell1Value == cell7Value ||
-                        cell5Value > Piece.NONE.getValue() && cell5Value == cell6Value)) {
-            return 4;
-        }
-        //Select cell 5
-        if (cell5Value == Piece.NONE.getValue() &&
-                (cell1Value > Piece.NONE.getValue() && cell1Value == cell9Value ||
-                        cell2Value > Piece.NONE.getValue() && cell2Value == cell8Value ||
-                        cell4Value > Piece.NONE.getValue() && cell4Value == cell6Value ||
-                        cell3Value > Piece.NONE.getValue() && cell3Value == cell7Value)) {
-            return 5;
-        }
-        //Select cell 6
-        if (cell6Value == Piece.NONE.getValue() &&
-                (cell3Value > Piece.NONE.getValue() && cell3Value == cell9Value ||
-                        cell4Value > Piece.NONE.getValue() && cell4Value == cell5Value)) {
-            return 6;
-        }
-        //Select cell 7
-        if (cell7Value == Piece.NONE.getValue() &&
-                (cell1Value > Piece.NONE.getValue() && cell1Value == cell4Value ||
-                        cell8Value > Piece.NONE.getValue() && cell8Value == cell9Value ||
-                        cell3Value > Piece.NONE.getValue() && cell3Value == cell5Value)) {
-            return 7;
-        }
-        //Select cell 8
-        if (cell8Value == Piece.NONE.getValue() &&
-                (cell2Value > Piece.NONE.getValue() && cell2Value == cell5Value ||
-                        cell7Value > Piece.NONE.getValue() && cell7Value == cell9Value)) {
-            return 8;
-        }
-        //Select cell 9
-        if (cell9Value == Piece.NONE.getValue() &&
-                (cell1Value > Piece.NONE.getValue() && cell1Value == cell5Value ||
-                        cell3Value > Piece.NONE.getValue() && cell3Value == cell6Value ||
-                        cell7Value > Piece.NONE.getValue() && cell7Value == cell8Value)) {
-            return 9;
-        }
-        else {
-            return selectRandomCell(selectedBoardNum);
-        }
+        int cellNumToMakeThreeInARow = cellNumToMakeThreeInARow(selectedBoardNum);
+        return (cellNumToMakeThreeInARow > 0) ? cellNumToMakeThreeInARow : selectRandomCell(selectedBoardNum);
     }
 
     /*
@@ -183,9 +103,92 @@ public class TicTacToeAIEasy implements ITicTacToeAI {
                         board7Value > Piece.NONE.getValue() && board7Value == board8Value)) {
             return 9;
         }
-        else {
-            return selectRandomBoard();
+
+        return selectRandomBoard();
+    }
+
+    private int cellNumToMakeThreeInARow(int selectedBoardNum) {
+        int cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 1);
+        int cell1Value = cellPieceMap.get(cellId).getPieceValue();
+        cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 2);
+        int cell2Value = cellPieceMap.get(cellId).getPieceValue();
+        cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 3);
+        int cell3Value = cellPieceMap.get(cellId).getPieceValue();
+        cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 4);
+        int cell4Value = cellPieceMap.get(cellId).getPieceValue();
+        cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 5);
+        int cell5Value = cellPieceMap.get(cellId).getPieceValue();
+        cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 6);
+        int cell6Value = cellPieceMap.get(cellId).getPieceValue();
+        cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 7);
+        int cell7Value = cellPieceMap.get(cellId).getPieceValue();
+        cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 8);
+        int cell8Value = cellPieceMap.get(cellId).getPieceValue();
+        cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 9);
+        int cell9Value = cellPieceMap.get(cellId).getPieceValue();
+
+        //Select cell 1
+        if (cell1Value == Piece.NONE.getValue() &&
+                (cell5Value > Piece.NONE.getValue() && cell5Value == cell9Value ||
+                        cell2Value > Piece.NONE.getValue() && cell2Value == cell3Value ||
+                        cell4Value > Piece.NONE.getValue() && cell4Value == cell7Value)) {
+            return 1;
         }
+        //Select cell 2
+        if (cell2Value == Piece.NONE.getValue() &&
+                (cell1Value > Piece.NONE.getValue() && cell1Value == cell3Value ||
+                        cell5Value > Piece.NONE.getValue() && cell5Value == cell8Value)) {
+            return 2;
+        }
+        //Select cell 3
+        if (cell3Value == Piece.NONE.getValue() &&
+                (cell1Value > Piece.NONE.getValue() && cell1Value == cell2Value ||
+                        cell5Value > Piece.NONE.getValue() && cell5Value == cell7Value ||
+                        cell6Value > Piece.NONE.getValue() && cell6Value == cell9Value)) {
+            return 3;
+        }
+        //Select cell 4
+        if (cell4Value == Piece.NONE.getValue() &&
+                (cell1Value > Piece.NONE.getValue() && cell1Value == cell7Value ||
+                        cell5Value > Piece.NONE.getValue() && cell5Value == cell6Value)) {
+            return 4;
+        }
+        //Select cell 5
+        if (cell5Value == Piece.NONE.getValue() &&
+                (cell1Value > Piece.NONE.getValue() && cell1Value == cell9Value ||
+                        cell2Value > Piece.NONE.getValue() && cell2Value == cell8Value ||
+                        cell4Value > Piece.NONE.getValue() && cell4Value == cell6Value ||
+                        cell3Value > Piece.NONE.getValue() && cell3Value == cell7Value)) {
+            return 5;
+        }
+        //Select cell 6
+        if (cell6Value == Piece.NONE.getValue() &&
+                (cell3Value > Piece.NONE.getValue() && cell3Value == cell9Value ||
+                        cell4Value > Piece.NONE.getValue() && cell4Value == cell5Value)) {
+            return 6;
+        }
+        //Select cell 7
+        if (cell7Value == Piece.NONE.getValue() &&
+                (cell1Value > Piece.NONE.getValue() && cell1Value == cell4Value ||
+                        cell8Value > Piece.NONE.getValue() && cell8Value == cell9Value ||
+                        cell3Value > Piece.NONE.getValue() && cell3Value == cell5Value)) {
+            return 7;
+        }
+        //Select cell 8
+        if (cell8Value == Piece.NONE.getValue() &&
+                (cell2Value > Piece.NONE.getValue() && cell2Value == cell5Value ||
+                        cell7Value > Piece.NONE.getValue() && cell7Value == cell9Value)) {
+            return 8;
+        }
+        //Select cell 9
+        if (cell9Value == Piece.NONE.getValue() &&
+                (cell1Value > Piece.NONE.getValue() && cell1Value == cell5Value ||
+                        cell3Value > Piece.NONE.getValue() && cell3Value == cell6Value ||
+                        cell7Value > Piece.NONE.getValue() && cell7Value == cell8Value)) {
+            return 9;
+        }
+
+        return -1;
     }
 
     private int selectRandomCell(int selectedBoardNum) {

@@ -309,7 +309,8 @@ public class InceptionGameActivity extends AppCompatActivity {
             new CountDownTimer(500, 100) {
 
                 public void onTick(long millisUntilFinished) {
-                    System.out.println(millisUntilFinished + " millis until finished");
+                    //Do nothing, required method
+                    return;
                 }
 
                 public void onFinish() {
@@ -354,6 +355,7 @@ public class InceptionGameActivity extends AppCompatActivity {
                 } else {
                     promptUser(R.string.empty);
                     aISelectsBoard();
+                    aIMakesMove();
                 }
             }
         }
@@ -1161,7 +1163,8 @@ public class InceptionGameActivity extends AppCompatActivity {
                 ticTacToeAI = new TicTacToeAIMedium(unselectableBoardMap, cellPieceMap);
                 break;
             case HARD:
-                //TODO: Create class for hard AI, add break statement
+                ticTacToeAI = new TicTacToeAIHard(unselectableBoardMap, cellPieceMap);
+                break;
             default:
                 ticTacToeAI = new TicTacToeAIEasy(unselectableBoardMap, cellPieceMap);
                 break;
@@ -1211,7 +1214,8 @@ public class InceptionGameActivity extends AppCompatActivity {
                 ticTacToeAI = new TicTacToeAIMedium(unselectableBoardMap, cellPieceMap);
                 break;
             case HARD:
-                //TODO: Create class for hard AI, add break statement
+                ticTacToeAI = new TicTacToeAIHard(unselectableBoardMap, cellPieceMap);
+                break;
             default:
                 ticTacToeAI = new TicTacToeAIEasy(unselectableBoardMap, cellPieceMap);
                 break;

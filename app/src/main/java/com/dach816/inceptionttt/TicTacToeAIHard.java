@@ -4,26 +4,29 @@ import java.util.Map;
 import java.util.Random;
 
 /**
- * The AI when playing Single Player on medium mode
+ * The AI when playing Single Player on hard mode
  */
-public class TicTacToeAIMedium implements ITicTacToeAI {
+public class TicTacToeAIHard implements ITicTacToeAI {
     private Map<Integer, Integer> unselectableBoardMap;
     private Map<Integer, CellPiece> cellPieceMap;
 
-    public TicTacToeAIMedium(Map<Integer, Integer> unselectableBoardMap, Map<Integer, CellPiece> cellPieceMap) {
+    public TicTacToeAIHard(Map<Integer, Integer> unselectableBoardMap, Map<Integer, CellPiece> cellPieceMap) {
         this.unselectableBoardMap = unselectableBoardMap;
         this.cellPieceMap = cellPieceMap;
     }
 
     /*
      * The possible moves to make in order of importance:
-     *  1. Making a move that will win the board
-     *  2. Preventing the other player from winning the board
-     *  3. Making a move that does not lead the player to select a board
-     *  4. Making any move
+     *  1. Making a move that will win the board but not lead the other player to win the game
+     *  2. Making a move that will win the board
+     *  3. Preventing the other player from winning the board
+     *  4. Making a move that does not lead the player to select a board
+     *  5. Making a move that does not lead the player to win a board
+     *  6. Making a good move when only one O piece is on a board
+     *  7. Making any move
      */
     public int makeMove(int selectedBoardNum) {
-        int cellNumToMakeThreeInARow = cellNumToMakeThreeInARow(selectedBoardNum);
+        int cellNumToMakeThreeInARow = cellNumToMakeThreeInARowWithPrecautions(selectedBoardNum);
         return (cellNumToMakeThreeInARow > 0) ? cellNumToMakeThreeInARow : selectRandomCell(selectedBoardNum);
     }
 
@@ -106,6 +109,100 @@ public class TicTacToeAIMedium implements ITicTacToeAI {
         }
 
         return selectRandomBoard();
+    }
+
+    private int cellNumToMakeThreeInARowWithPrecautions(int selectedBoardNum) {
+        int cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 1);
+        int cell1Value = cellPieceMap.get(cellId).getPieceValue();
+        cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 2);
+        int cell2Value = cellPieceMap.get(cellId).getPieceValue();
+        cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 3);
+        int cell3Value = cellPieceMap.get(cellId).getPieceValue();
+        cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 4);
+        int cell4Value = cellPieceMap.get(cellId).getPieceValue();
+        cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 5);
+        int cell5Value = cellPieceMap.get(cellId).getPieceValue();
+        cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 6);
+        int cell6Value = cellPieceMap.get(cellId).getPieceValue();
+        cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 7);
+        int cell7Value = cellPieceMap.get(cellId).getPieceValue();
+        cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 8);
+        int cell8Value = cellPieceMap.get(cellId).getPieceValue();
+        cellId = InceptionGameActivity.generateCellPieceId(selectedBoardNum, 9);
+        int cell9Value = cellPieceMap.get(cellId).getPieceValue();
+
+        //Select a cell where the player doesn't get 3 in a row at the next board
+        //Select cell 1
+        if (cell1Value == Piece.NONE.getValue() &&
+                (cell5Value > Piece.NONE.getValue() && cell5Value == cell9Value ||
+                        cell2Value > Piece.NONE.getValue() && cell2Value == cell3Value ||
+                        cell4Value > Piece.NONE.getValue() && cell4Value == cell7Value) &&
+                !hasTwoOutOfThreeInARow(1, selectedBoardNum)) {
+            return 1;
+        }
+        //Select cell 2
+        if (cell2Value == Piece.NONE.getValue() &&
+                (cell1Value > Piece.NONE.getValue() && cell1Value == cell3Value ||
+                        cell5Value > Piece.NONE.getValue() && cell5Value == cell8Value) &&
+                !hasTwoOutOfThreeInARow(2, selectedBoardNum)) {
+            return 2;
+        }
+        //Select cell 3
+        if (cell3Value == Piece.NONE.getValue() &&
+                (cell1Value > Piece.NONE.getValue() && cell1Value == cell2Value ||
+                        cell5Value > Piece.NONE.getValue() && cell5Value == cell7Value ||
+                        cell6Value > Piece.NONE.getValue() && cell6Value == cell9Value) &&
+                !hasTwoOutOfThreeInARow(3, selectedBoardNum)) {
+            return 3;
+        }
+        //Select cell 4
+        if (cell4Value == Piece.NONE.getValue() &&
+                (cell1Value > Piece.NONE.getValue() && cell1Value == cell7Value ||
+                        cell5Value > Piece.NONE.getValue() && cell5Value == cell6Value) &&
+                !hasTwoOutOfThreeInARow(4, selectedBoardNum)) {
+            return 4;
+        }
+        //Select cell 5
+        if (cell5Value == Piece.NONE.getValue() &&
+                (cell1Value > Piece.NONE.getValue() && cell1Value == cell9Value ||
+                        cell2Value > Piece.NONE.getValue() && cell2Value == cell8Value ||
+                        cell4Value > Piece.NONE.getValue() && cell4Value == cell6Value ||
+                        cell3Value > Piece.NONE.getValue() && cell3Value == cell7Value) &&
+                !hasTwoOutOfThreeInARow(5, selectedBoardNum)) {
+            return 5;
+        }
+        //Select cell 6
+        if (cell6Value == Piece.NONE.getValue() &&
+                (cell3Value > Piece.NONE.getValue() && cell3Value == cell9Value ||
+                        cell4Value > Piece.NONE.getValue() && cell4Value == cell5Value) &&
+                !hasTwoOutOfThreeInARow(6, selectedBoardNum)) {
+            return 6;
+        }
+        //Select cell 7
+        if (cell7Value == Piece.NONE.getValue() &&
+                (cell1Value > Piece.NONE.getValue() && cell1Value == cell4Value ||
+                        cell8Value > Piece.NONE.getValue() && cell8Value == cell9Value ||
+                        cell3Value > Piece.NONE.getValue() && cell3Value == cell5Value) &&
+                !hasTwoOutOfThreeInARow(7, selectedBoardNum)) {
+            return 7;
+        }
+        //Select cell 8
+        if (cell8Value == Piece.NONE.getValue() &&
+                (cell2Value > Piece.NONE.getValue() && cell2Value == cell5Value ||
+                        cell7Value > Piece.NONE.getValue() && cell7Value == cell9Value) &&
+                !hasTwoOutOfThreeInARow(8, selectedBoardNum)) {
+            return 8;
+        }
+        //Select cell 9
+        if (cell9Value == Piece.NONE.getValue() &&
+                (cell1Value > Piece.NONE.getValue() && cell1Value == cell5Value ||
+                        cell3Value > Piece.NONE.getValue() && cell3Value == cell6Value ||
+                        cell7Value > Piece.NONE.getValue() && cell7Value == cell8Value) &&
+                !hasTwoOutOfThreeInARow(9, selectedBoardNum)) {
+            return 9;
+        }
+
+        return -1;
     }
 
     private int cellNumToMakeThreeInARow(int selectedBoardNum) {
@@ -203,7 +300,13 @@ public class TicTacToeAIMedium implements ITicTacToeAI {
 
             if (cellPieceMap.get(cellPieceId).getPieceValue() == Piece.NONE.getValue() &&
                     unselectableBoardMap.get(randomInt) == Piece.NONE.getValue() &&
+                    !hasTwoOutOfThreeInARow(randomInt, selectedBoardNum) &&
                     isInLineWithSinglePiece(randomInt, selectedBoardNum)) {
+                cellNum = randomInt;
+            }
+            else if (cellPieceMap.get(cellPieceId).getPieceValue() == Piece.NONE.getValue() &&
+                    isInLineWithSinglePiece(randomInt, selectedBoardNum) &&
+                    iterations > 9) {
                 cellNum = randomInt;
             }
             //Don't want an infinite loop so restricting the iterations to be 9
@@ -230,6 +333,18 @@ public class TicTacToeAIMedium implements ITicTacToeAI {
         }
 
         return boardNum;
+    }
+
+    private boolean hasTwoOutOfThreeInARow(int possibleBoardNum, int selectedBoardNum) {
+        if (possibleBoardNum == selectedBoardNum) {
+            return false;
+        }
+        else if (unselectableBoardMap.get(possibleBoardNum) > Piece.NONE.getValue()) {
+            return false;
+        }
+        else {
+            return cellNumToMakeThreeInARow(possibleBoardNum) > 0;
+        }
     }
 
     private int cellNumOfSingleOPiece(int boardNum) {
